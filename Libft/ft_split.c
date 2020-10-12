@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 08:23:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/10 14:31:58 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/12 16:02:56 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,24 @@ static char		*get_arr(char const *s, char c, char *res, size_t idx)
 	return (res);
 }
 
+static	void	*free_split(char **res, size_t res_idx)
+{
+	while (res_idx)
+	{
+		free(res[res_idx]);
+		res_idx--;
+	}
+	free(res);
+	return (NULL);
+}
+
 char			**ft_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	res_idx;
 	char	**res;
 
-	res = (char **)malloc(sizeof(char *) * (cnt_words(s, c) + 1));
-	if (!res)
+	if (!(res = (char **)malloc(sizeof(char *) * (cnt_words(s, c) + 1))))
 		return (NULL);
 	i = 0;
 	res_idx = 0;
@@ -71,7 +81,8 @@ char			**ft_split(char const *s, char c)
 			i++;
 		if (s[i] == '\0')
 			break ;
-		res[res_idx] = get_arr(s, c, res[res_idx], i);
+		if (!(res[res_idx] = get_arr(s, c, res[res_idx], i)))
+			return (free_split(res, res_idx));
 		res_idx++;
 		while (s[i] != c && s[i] != '\0')
 			i++;
