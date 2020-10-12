@@ -6,7 +6,7 @@
 #    By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/02 15:58:25 by jkeum             #+#    #+#              #
-#    Updated: 2020/10/11 17:13:05 by jkeum            ###   ########.fr        #
+#    Updated: 2020/10/12 19:38:55 by jkeum            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,6 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	   ft_substr.c ft_strjoin.c ft_strtrim.c \
 	   ft_split.c ft_itoa.c ft_strmapi.c \
 	   ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-	   ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-	   ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 OBJS = ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o \
 	   ft_isprint.o ft_toupper.o ft_tolower.o \
@@ -38,28 +36,28 @@ OBJS = ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o \
 	   ft_substr.o ft_strjoin.o ft_strtrim.o \
 	   ft_split.o ft_itoa.o ft_strmapi.o \
 	   ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o \
-	   ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o \
-	   ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o
 
-BONUS_SRCS = *_bonus.c
-BONUS_OBJS = $(BONUS_SRCS:_bonus.c=.o)
+BONUS_SRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+	   ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 RM = rm -f
 
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $(SRCS)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME) : $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
+	$(AR) $(ARFLAGS) $@ $(OBJS)
 	ranlib $@
 
-bonus : $(BONUS_OBJS)
-	$(AR) $(ARFLAGS) $@ $^
+bonus : $(NAME) $(BONUS_OBJS)
+	$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJS)
 
 clean :
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean : clean
 	$(RM) $(NAME)
