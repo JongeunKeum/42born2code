@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 11:52:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/11 20:17:48 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/05 17:58:50 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	dst_len;
 
 	dst_len = ft_strlen(dst);
-	if (dst_len < size + 1)
-		return (size + ft_strlen(src));
 	i = dst_len;
 	j = 0;
 	if (size > 0)
