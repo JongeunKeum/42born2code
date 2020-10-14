@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 08:23:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/12 16:02:56 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/14 15:13:28 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ char			**ft_split(char const *s, char c)
 		while (s[i] != c && s[i] != '\0')
 			i++;
 	}
-	res[res_idx] = ft_strdup("");
 	res[res_idx] = NULL;
 	return (res);
 }
