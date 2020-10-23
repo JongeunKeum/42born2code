@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 08:23:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/14 15:13:28 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/20 21:42:49 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static	void	*free_split(char **res, size_t res_idx)
 {
 	while (res_idx)
 	{
-		free(res[res_idx]);
 		res_idx--;
+		free(res[res_idx]);
 	}
 	free(res);
 	return (NULL);
@@ -71,6 +71,8 @@ char			**ft_split(char const *s, char c)
 	size_t	res_idx;
 	char	**res;
 
+	if (!s)
+		return (NULL);
 	if (!(res = (char **)malloc(sizeof(char *) * (cnt_words(s, c) + 1))))
 		return (NULL);
 	i = 0;

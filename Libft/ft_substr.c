@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 22:47:02 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/09 06:03:20 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/20 21:32:35 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	res_len;
 	char	*res;
 
+	if (!s)
+		return (NULL);
 	s_len = ft_strlen(s);
 	if (start > s_len)
 		return (ft_strdup(""));

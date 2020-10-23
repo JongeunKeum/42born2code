@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 19:19:00 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/09 20:24:23 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/20 21:43:23 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	char			*res;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	res = (char *)malloc(ft_strlen(s) + 1);
 	if (!res)

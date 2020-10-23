@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 14:33:35 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/10 14:34:55 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/20 21:44:27 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
+	if (!s)
+		return ;
 	if (fd >= 0)
 	{
 		write(fd, s, ft_strlen(s));
