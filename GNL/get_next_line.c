@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 16:26:23 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/23 14:54:54 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/24 16:48:43 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,9 @@ char	*get_line(char *save)
 		dest_len++;
 	if (!(dest = (char *)malloc(dest_len + 1)))
 		return (NULL);
-	i = 0;
-	while (i < dest_len)
-	{
+	i = -1;
+	while (++i < dest_len)
 		dest[i] = save[i];
-		i++;
-	}
 	dest[i] = '\0';
 	return (dest);
 }
@@ -84,10 +81,10 @@ int		get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	read_len = 1;
 	if (!(buff = (char *)malloc(BUFFER_SIZE + 1)))
 		return (-1);
-	while (read_len != 0 && !is_newline(save))
+	read_len = 1;
+	while (!is_newline(save) && read_len != 0)
 	{
 		if ((read_len = read(fd, buff, BUFFER_SIZE)) < 0)
 			return (-1);
