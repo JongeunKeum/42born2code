@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 16:26:23 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/24 16:48:43 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/25 15:29:07 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_line(char *save)
 	char	*dest;
 
 	dest_len = 0;
-	while (save[dest_len] && save[dest_len] != '\n')
+	while (save[dest_len] != '\n' && save[dest_len])
 		dest_len++;
 	if (!(dest = (char *)malloc(dest_len + 1)))
 		return (NULL);
@@ -55,7 +55,7 @@ char	*get_save(char *save)
 
 	save_len = ft_strlen(save);
 	i = 0;
-	while (save[i] && save[i] != '\n')
+	while (save[i] != '\n' && save[i])
 		i++;
 	if (!save[i])
 	{
