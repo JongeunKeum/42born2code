@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 16:26:23 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/27 19:35:59 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/27 19:40:51 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int		get_next_line(int fd, char **line)
 	free(buff);
 	if (!(*line = get_line(save)))
 		return (-1);
-	save = get_save(save);
+	if (!(save = get_save(save)))
+		return (-1);
 	if (!save)
 		return (0);
 	return (1);
