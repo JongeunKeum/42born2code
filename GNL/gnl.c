@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 16:26:23 by jkeum             #+#    #+#             */
-/*   Updated: 2020/10/27 16:22:19 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/10/27 19:35:59 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ char	*get_save(char *save)
 	}
 	i++;
 	if (!(dest = (char *)malloc(save_len - i + 1)))
+	{
+		free(save);
 		return (NULL);
+	}
 	j = 0;
 	while (save[i])
 		dest[j++] = save[i++];
