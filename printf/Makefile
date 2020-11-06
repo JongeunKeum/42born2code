@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar
 ARFLAGS = rc
 NAME = libftprintf.a
-SRCS = ./srcs/test.c
+SRCS = ./srcs/ft_printf.c ./srcs/ft_print_d.c
 OBJS = $(SRCS:.c=.o)
 LIB = libft.a
 LIB_DIR = ./libft
