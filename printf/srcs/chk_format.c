@@ -6,13 +6,13 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:59:25 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/06 21:41:44 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/07 20:14:09 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	check_width(const char *str, t_obj *obj)
+void	check_width(const char *str, t_obj *obj, va_list args)
 {
 	obj->width = 0;
 	if (str[obj->idx] > '0' && str[obj->idx] <= '9')
@@ -20,16 +20,27 @@ void	check_width(const char *str, t_obj *obj)
 		while (ft_isdigit(str[obj->idx]))
 			obj->width = obj->width * 10 + (str[obj->idx++] - '0');
 	}
+	else if (str[obj->idx] == '*')
+	{
+		obj->width = va_arg(args, int);
+		obj->idx++;
+	}
 }
 
-void	check_precision(const char *str, t_obj *obj)
+void	check_precision(const char *str, t_obj *obj, va_list args)
 {
 	obj->precision = 0;
+	obj->dot = 1;
 	obj->idx++;
 	if (ft_isdigit(str[obj->idx]))
 	{
 		while (ft_isdigit(str[obj->idx]))
 			obj->precision = obj->precision * 10 + (str[obj->idx++] - '0');
+	}
+	else if (str[obj->idx] == '*')
+	{
+		obj->precision = va_arg(args, int);
+		obj->idx++;
 	}
 }
 
@@ -78,9 +89,9 @@ int		check_format(const char *str, va_list args, t_obj *obj)
 			check_flag(str, obj);
 			obj->idx++;
 		}
-		check_width(str, obj);
+		check_width(str, obj, args);
 		if (str[obj->idx] == '.')
-			check_precision(str, obj);
+			check_precision(str, obj, args);
 	}
 	obj->type = str[obj->idx];
 	if (check_type(args, obj))
