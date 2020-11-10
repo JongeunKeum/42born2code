@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:59:25 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/07 20:14:09 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/10 17:10:57 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int		check_type(va_list args, t_obj *obj)
 {
 	if (obj->type == 'd')
 		return (print_int(args, obj));
-/*	else if (obj->type == 'c')
-		print_char(str, args, obj);
-	else if (obj->type == 's')
+	else if (obj->type == 'c')
+		return (print_char(args, obj));
+/*	else if (obj->type == 's')
 		print_str(str, args, obj);
 	else if (obj->type == 'u')
 		print_unsigned(str, args, obj);
