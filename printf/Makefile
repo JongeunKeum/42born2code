@@ -4,7 +4,8 @@ AR = ar
 ARFLAGS = rc
 NAME = libftprintf.a
 SRCS = ./srcs/ft_printf.c ./srcs/ft_print_d.c \
-	   ./srcs/chk_format.c ./srcs/ft_lltoa.c
+	   ./srcs/chk_format.c ./srcs/ft_lltoa.c \
+	   ./srcs/ft_print_c.c
 OBJS = $(SRCS:.c=.o)
 LIB = libft.a
 LIB_DIR = ./libft
