@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:59:25 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/10 17:10:57 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/11 15:05:22 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,16 @@ int		check_type(va_list args, t_obj *obj)
 		return (print_int(args, obj));
 	else if (obj->type == 'c')
 		return (print_char(args, obj));
-/*	else if (obj->type == 's')
-		print_str(str, args, obj);
-	else if (obj->type == 'u')
-		print_unsigned(str, args, obj);
+	else if (obj->type == 's')
+		return (print_str(args, obj));
+/*	else if (obj->type == 'u')
+		print_unsigned(args, obj);
 	else if (obj->type == 'p')
-		print_address(str, args, obj);
+		print_address(args, obj);
 	else if (obj->type == 'x')
-		print_hex_lower(str, args, obj);
+		print_hex_lower(args, obj);
 	else if (obj->type == 'X')
-		print_hex_upper(str, args, obj);
+		print_hex_upper(args, obj);
 		*/
 	else
 		return (0);

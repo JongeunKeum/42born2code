@@ -6,30 +6,25 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/09 15:09:50 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/11 15:18:11 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-char	*fill_precision(t_obj *obj, char *prev)
+char	*fill_precision_nbr(t_obj *obj, char *prev)
 {
 	int		i;
 	int		len;
 	char	*res;
 
-	if (obj->precision > obj->len)
-	{
-		len = obj->precision - obj->len + obj->neg;
-		res = (char *)malloc(len + 1);
-		i = 0;
-		while (i < len)
-			res[i++] = '0';
-		res[len] = '\0';
-		res = ft_strjoin(prev, res);
-	}
-	else
-		res = prev;
+	len = obj->precision - obj->len + obj->neg;
+	res = (char *)malloc(len + 1);
+	i = 0;
+	while (i < len)
+		res[i++] = '0';
+	res[len] = '\0';
+	res = ft_strjoin(prev, res);
 	return (res);
 }
 
@@ -103,7 +98,7 @@ int		print_int(va_list args, t_obj *obj)
 	obj->len = ft_strlen(nbr);
 	res = ft_strdup("");
 	if (obj->precision > obj->len)
-		res = fill_precision(obj, res);
+		res = fill_precision_nbr(obj, res);
 	if (!obj->dot || obj->precision)
 		res = ft_strjoin(res, nbr + obj->neg);
 	if (obj->width > (int)ft_strlen(res))
