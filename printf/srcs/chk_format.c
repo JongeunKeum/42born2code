@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:59:25 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/11 15:05:22 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/14 16:49:21 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,25 @@ void	check_flag(const char *str, t_obj *obj)
 	if (str[obj->idx] == ' ')
 		obj->space = 1;
 	if (str[obj->idx] == '#')
-		obj->prefix = 1;
+		obj->prefix = 2;
 }
 
 int		check_type(va_list args, t_obj *obj)
 {
-	if (obj->type == 'd')
+	if (obj->type == 'd' || obj->type == 'i')
 		return (print_int(args, obj));
 	else if (obj->type == 'c')
 		return (print_char(args, obj));
 	else if (obj->type == 's')
 		return (print_str(args, obj));
-/*	else if (obj->type == 'u')
-		print_unsigned(args, obj);
-	else if (obj->type == 'p')
-		print_address(args, obj);
-	else if (obj->type == 'x')
-		print_hex_lower(args, obj);
-	else if (obj->type == 'X')
-		print_hex_upper(args, obj);
-		*/
+	else if (obj->type == 'u')
+		return (print_unsigned_int(args, obj));
+	else if (obj->type == 'x' || obj->type == 'X')
+		return (print_hex(args, obj));
+	else if (obj->type == 'o')
+		return (print_oct(args, obj));
+//	else if (obj->type == 'p')
+//		return (print_address(args, obj));
 	else
 		return (0);
 }
@@ -82,7 +81,7 @@ int		check_type(va_list args, t_obj *obj)
 int		check_format(const char *str, va_list args, t_obj *obj)
 {
 	obj->idx++;
-	while (!ft_strchr("cdisupxX", str[obj->idx]))
+	while (!ft_strchr("cdisupxXo", str[obj->idx]))
 	{
 		while (ft_strchr("-0 #+", str[obj->idx]))
 		{
@@ -94,6 +93,8 @@ int		check_format(const char *str, va_list args, t_obj *obj)
 			check_precision(str, obj, args);
 	}
 	obj->type = str[obj->idx];
+	if (obj->type == 'o' && obj->prefix)
+		obj->prefix = 1;
 	if (check_type(args, obj))
 		return (1);
 	return (0);
