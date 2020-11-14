@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/11 15:18:11 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/14 17:26:31 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*fill_width(t_obj *obj, char *prev)
 	prev_len = ft_strlen(prev);
 	len = obj->width - prev_len;
 	flag = obj->neg | obj->space | obj->sign;
+	if (obj->prefix == 1 && obj->dot)
+		obj->prefix = 0;
 	if (obj->left)
 	{
 		res = (char *)malloc(len + 1);
@@ -47,7 +49,11 @@ char	*fill_width(t_obj *obj, char *prev)
 			prev = ft_strjoin("+", prev);
 		else if (obj->neg)
 			prev = ft_strjoin("-", prev);
-		res = ft_memset(res + flag, ' ', len - flag);
+		else if (obj->prefix == 2)
+			prev = ft_strjoin("0x", prev);
+		else if (obj->prefix == 1)
+			prev = ft_strjoin("0", prev);
+		res = ft_memset(res + flag + obj->prefix, ' ', len - flag - obj->prefix);
 		res[len] = '\0';
 		return (ft_strjoin(prev, res));
 	}
@@ -63,18 +69,27 @@ char	*fill_width(t_obj *obj, char *prev)
 			else if (obj->neg)
 				res[0] = '-';
 			res = ft_memset(res + flag, '0', len - flag);
+			if (obj->prefix == 2)
+				res[1] = 'x';
 			res[len - flag] = '\0';
 			return (ft_strjoin(res - flag, prev));
 		}
 		else
 		{
-			res = ft_memset(res, ' ', len - obj->neg);
+			res = ft_memset(res, ' ', len - flag - obj->prefix);
 			if (obj->space)
 				res[len - flag] = ' ';
 			else if (obj->sign)
 				res[len - flag] = '+';
 			else if (obj->neg)
 				res[len - flag] = '-';
+			else if (obj->prefix == 2)
+			{
+				res[len - flag - obj->prefix] = '0';
+				res[len - flag - obj->prefix + 1] = 'x';
+			}
+			else if (obj->prefix == 1)
+				res[len - flag - obj->prefix] = '0';
 			res[len] = '\0';
 			return (ft_strjoin(res, prev));
 		}
