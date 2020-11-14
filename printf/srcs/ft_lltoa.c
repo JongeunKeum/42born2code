@@ -6,13 +6,13 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 21:00:10 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/07 21:06:42 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/13 11:31:34 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int	n_len(long long n)
+int		n_len(long long n)
 {
 	int	len;
 
@@ -25,7 +25,7 @@ static int	n_len(long long n)
 	return (len);
 }
 
-static char	*ft_strrev(char *str)
+char	*ft_strrev(char *str)
 {
 	int		i;
 	int		len;
@@ -43,7 +43,7 @@ static char	*ft_strrev(char *str)
 	return (str);
 }
 
-static char	*get_arr(char *res, long long n, int len, int sign)
+char	*get_arr(char *res, long long n, int len, int sign)
 {
 	int	i;
 
@@ -65,7 +65,7 @@ static char	*get_arr(char *res, long long n, int len, int sign)
 	return (res);
 }
 
-char		*ft_lltoa(long long n)
+char	*ft_lltoa(long long n)
 {
 	int		len;
 	int		sign;
