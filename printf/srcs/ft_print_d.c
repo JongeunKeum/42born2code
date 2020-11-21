@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/14 17:26:31 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/21 17:59:21 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,20 @@ char	*fill_width(t_obj *obj, char *prev)
 
 int		print_int(va_list args, t_obj *obj)
 {
-	int		n;
-	char	*nbr;
-	char	*res;
+	long long	n;
+	char		*nbr;
+	char		*res;
 
-	n = va_arg(args, int);
+	if (obj->length == 3)
+		n = va_arg(args, long);
+	else if (obj->length == 4)
+		n = va_arg(args, long long);
+	else if (obj->length == 2)
+		n = (char)va_arg(args, int);
+	else if (obj->length == 1)
+		n = (short)va_arg(args, int);
+	else
+		n = va_arg(args, int);
 	if (n < 0)
 		obj->neg = 1;
 	if (obj->neg || obj->sign)
@@ -114,7 +123,7 @@ int		print_int(va_list args, t_obj *obj)
 	res = ft_strdup("");
 	if (obj->precision > obj->len)
 		res = fill_precision_nbr(obj, res);
-	if (!obj->dot || obj->precision)
+	if (n != 0 || (!obj->dot || obj->precision))
 		res = ft_strjoin(res, nbr + obj->neg);
 	if (obj->width > (int)ft_strlen(res))
 		res = fill_width(obj, res);

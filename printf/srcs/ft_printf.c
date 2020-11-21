@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:25:31 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/14 16:49:41 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/21 18:00:11 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_obj	*init_objs(void)
 	obj->idx = 0;
 	obj->neg = 0;
 	obj->dot = 0;
+	obj->length = 0;
 	obj->return_value = 0;
 	return (obj);
 }
@@ -47,6 +48,7 @@ void	set_objs(t_obj *obj)
 	obj->len = 0;
 	obj->neg = 0;
 	obj->dot = 0;
+	obj->length = 0;
 }
 
 int		ft_printf(const char *str, ...)

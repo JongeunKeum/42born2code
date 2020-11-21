@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:59:25 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/14 16:49:21 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/21 18:05:59 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	check_width(const char *str, t_obj *obj, va_list args)
 	else if (str[obj->idx] == '*')
 	{
 		obj->width = va_arg(args, int);
+		if (obj->width < 0)
+		{
+			obj->width *= -1;
+			obj->left = 1;
+		}
 		obj->idx++;
 	}
 }
@@ -72,8 +77,10 @@ int		check_type(va_list args, t_obj *obj)
 		return (print_hex(args, obj));
 	else if (obj->type == 'o')
 		return (print_oct(args, obj));
-//	else if (obj->type == 'p')
-//		return (print_address(args, obj));
+	else if (obj->type == 'p')
+		return (print_address(args, obj));
+	else if (obj->type == '%')
+		return (print_percent(obj));
 	else
 		return (0);
 }
@@ -81,7 +88,7 @@ int		check_type(va_list args, t_obj *obj)
 int		check_format(const char *str, va_list args, t_obj *obj)
 {
 	obj->idx++;
-	while (!ft_strchr("cdisupxXo", str[obj->idx]))
+	while (!ft_strchr("cdisupxXo%", str[obj->idx]))
 	{
 		while (ft_strchr("-0 #+", str[obj->idx]))
 		{
@@ -91,6 +98,7 @@ int		check_format(const char *str, va_list args, t_obj *obj)
 		check_width(str, obj, args);
 		if (str[obj->idx] == '.')
 			check_precision(str, obj, args);
+		check_length(str, obj);
 	}
 	obj->type = str[obj->idx];
 	if (obj->type == 'o' && obj->prefix)

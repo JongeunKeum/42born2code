@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 20:09:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/14 16:13:03 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/16 19:33:07 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int		print_hex(va_list args, t_obj *obj)
 	}
 	ft_putstr_fd(res, 1);
 	obj->return_value += ft_strlen(res);
+	free(res);
 	return (1);
 }
