@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:13:22 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/12 15:39:21 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/21 18:48:05 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 
 int		print_unsigned_int(va_list args, t_obj *obj)
 {
-	unsigned int	n;
-	char			*nbr;
-	char			*res;
+	unsigned long long	n;
+	char				*nbr;
+	char				*res;
 
-	n = va_arg(args, unsigned int);
+	if (obj->length == 3)
+		n = va_arg(args, unsigned long);
+	else if (obj->length == 4)
+		n = va_arg(args, unsigned long long);
+	else if (obj->length == 1)
+		n = (unsigned short)va_arg(args, int);
+	else
+		n = va_arg(args, unsigned int);
 	if (obj->sign)
 		obj->space = 0;
 	nbr = ft_lltoa(n);
