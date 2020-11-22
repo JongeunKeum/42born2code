@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/21 18:06:30 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/22 13:37:36 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct	s_obj
 	int		dot;
 	int		length;
 	int		return_value;
+	char	*res;
 }				t_obj;
 
 int			print_int(va_list args, t_obj *obj);
@@ -52,9 +53,9 @@ void		check_flag(const char *str, t_obj *obj);
 int			check_type(va_list args, t_obj *obj);
 int			check_format(const char *str, va_list args, t_obj *obj);
 void		check_length(const char *str, t_obj *obj);
-char		*fill_precision_nbr(t_obj *obj, char *prev);
-char		*fill_width(t_obj *obj, char *prev);
-char		*fill_width_null(t_obj *obj, char c);
+void		fill_precision_nbr(t_obj *obj);
+void		fill_width(t_obj *obj);
+void		fill_width_null(t_obj *obj, char c);
 char		*ft_lltoa(long long n);
 char		*ft_ptoa(long long n);
 char		*ft_convert_base(char *nbr, char *base_from, char *base_to);
