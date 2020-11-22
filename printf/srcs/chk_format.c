@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:59:25 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/21 18:05:59 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/22 15:06:09 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	check_precision(const char *str, t_obj *obj, va_list args)
 		obj->precision = va_arg(args, int);
 		obj->idx++;
 	}
+	if (obj->precision < 0)
+		obj->dot = 0;
 }
 
 void	check_flag(const char *str, t_obj *obj)
@@ -81,6 +83,8 @@ int		check_type(va_list args, t_obj *obj)
 		return (print_address(args, obj));
 	else if (obj->type == '%')
 		return (print_percent(obj));
+	else if (obj->type == 'n')
+		return (print_num_ch(args, obj));
 	else
 		return (0);
 }
@@ -88,7 +92,7 @@ int		check_type(va_list args, t_obj *obj)
 int		check_format(const char *str, va_list args, t_obj *obj)
 {
 	obj->idx++;
-	while (!ft_strchr("cdisupxXo%", str[obj->idx]))
+	while (!ft_strchr("cdisupxXon%", str[obj->idx]))
 	{
 		while (ft_strchr("-0 #+", str[obj->idx]))
 		{
