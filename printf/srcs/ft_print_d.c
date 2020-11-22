@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/21 17:59:21 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/22 11:45:54 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ char	*fill_width(t_obj *obj, char *prev)
 				res[0] = '+';
 			else if (obj->neg)
 				res[0] = '-';
-			res = ft_memset(res + flag, '0', len - flag);
+			ft_memset(res + flag, '0', len - flag);
 			if (obj->prefix == 2)
 				res[1] = 'x';
-			res[len - flag] = '\0';
-			return (ft_strjoin(res - flag, prev));
+			res[len] = '\0';
+			return (ft_strjoin(res, prev));
 		}
 		else
 		{
@@ -139,5 +139,6 @@ int		print_int(va_list args, t_obj *obj)
 	ft_putstr_fd(res, 1);
 	obj->return_value += ft_strlen(res);
 	free(res);
+	free(nbr);
 	return (1);
 }
