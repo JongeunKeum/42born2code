@@ -6,12 +6,11 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/22 13:55:56 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/22 15:32:53 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
 void	fill_precision_nbr(t_obj *obj)
 {
