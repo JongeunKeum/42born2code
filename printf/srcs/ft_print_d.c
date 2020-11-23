@@ -6,102 +6,31 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/22 11:45:54 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 13:24:05 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-char	*fill_precision_nbr(t_obj *obj, char *prev)
+void		fill_precision_nbr(t_obj *obj)
 {
 	int		i;
 	int		len;
-	char	*res;
+	char	*prec;
 
 	len = obj->precision - obj->len + obj->neg;
-	res = (char *)malloc(len + 1);
+	prec = (char *)calloc(len + 1, 1);
 	i = 0;
 	while (i < len)
-		res[i++] = '0';
-	res[len] = '\0';
-	res = ft_strjoin(prev, res);
-	return (res);
+		prec[i++] = '0';
+	obj->res = ft_strjoin(obj->res, prec);
+	free(prec);
 }
 
-char	*fill_width(t_obj *obj, char *prev)
-{
-	int		len;
-	int		prev_len;
-	int		flag;
-	char	*res;
-
-	prev_len = ft_strlen(prev);
-	len = obj->width - prev_len;
-	flag = obj->neg | obj->space | obj->sign;
-	if (obj->prefix == 1 && obj->dot)
-		obj->prefix = 0;
-	if (obj->left)
-	{
-		res = (char *)malloc(len + 1);
-		if (obj->space)
-			prev = ft_strjoin(" ", prev);
-		else if (obj->sign)
-			prev = ft_strjoin("+", prev);
-		else if (obj->neg)
-			prev = ft_strjoin("-", prev);
-		else if (obj->prefix == 2)
-			prev = ft_strjoin("0x", prev);
-		else if (obj->prefix == 1)
-			prev = ft_strjoin("0", prev);
-		res = ft_memset(res + flag + obj->prefix, ' ', len - flag - obj->prefix);
-		res[len] = '\0';
-		return (ft_strjoin(prev, res));
-	}
-	else
-	{
-		res = (char *)malloc(obj->width + 1);
-		if (!obj->dot && obj->zero)
-		{
-			if (obj->space)
-				res[0] = ' ';
-			else if (obj->sign)
-				res[0] = '+';
-			else if (obj->neg)
-				res[0] = '-';
-			ft_memset(res + flag, '0', len - flag);
-			if (obj->prefix == 2)
-				res[1] = 'x';
-			res[len] = '\0';
-			return (ft_strjoin(res, prev));
-		}
-		else
-		{
-			res = ft_memset(res, ' ', len - flag - obj->prefix);
-			if (obj->space)
-				res[len - flag] = ' ';
-			else if (obj->sign)
-				res[len - flag] = '+';
-			else if (obj->neg)
-				res[len - flag] = '-';
-			else if (obj->prefix == 2)
-			{
-				res[len - flag - obj->prefix] = '0';
-				res[len - flag - obj->prefix + 1] = 'x';
-			}
-			else if (obj->prefix == 1)
-				res[len - flag - obj->prefix] = '0';
-			res[len] = '\0';
-			return (ft_strjoin(res, prev));
-		}
-	}
-}
-
-int		print_int(va_list args, t_obj *obj)
+long long	get_num_d(va_list args, t_obj *obj)
 {
 	long long	n;
-	char		*nbr;
-	char		*res;
-
+	
 	if (obj->length == 3)
 		n = va_arg(args, long);
 	else if (obj->length == 4)
@@ -118,27 +47,34 @@ int		print_int(va_list args, t_obj *obj)
 		obj->space = 0;
 	if (obj->neg)
 		obj->sign = 0;
+	return (n);
+}
+
+int			print_int(va_list args, t_obj *obj)
+{
+	long long	n;
+	char		*nbr;
+
+	n = get_num_d(args, obj);
 	nbr = ft_lltoa(n);
 	obj->len = ft_strlen(nbr);
-	res = ft_strdup("");
-	if (obj->precision > obj->len)
-		res = fill_precision_nbr(obj, res);
+	if (obj->precision > obj->len - obj->neg)
+		fill_precision_nbr(obj);
 	if (n != 0 || (!obj->dot || obj->precision))
-		res = ft_strjoin(res, nbr + obj->neg);
-	if (obj->width > (int)ft_strlen(res))
-		res = fill_width(obj, res);
+		obj->res = ft_strjoin(obj->res, nbr + obj->neg);
+	if (obj->width > (int)ft_strlen(obj->res))
+		fill_width(obj);
 	else
 	{
 		if (obj->space)
-			res = ft_strjoin(" ", res);
+			obj->res = ft_strjoin(" ", obj->res);
 		else if (obj->sign)
-			res = ft_strjoin("+", res);
+			obj->res = ft_strjoin("+", obj->res);
 		else if (obj->neg)
-			res = ft_strjoin("-", res);
+			obj->res = ft_strjoin("-", obj->res);
 	}
-	ft_putstr_fd(res, 1);
-	obj->return_value += ft_strlen(res);
-	free(res);
+	ft_putstr_fd(obj->res, 1);
+	obj->return_value += ft_strlen(obj->res);
 	free(nbr);
 	return (1);
 }
