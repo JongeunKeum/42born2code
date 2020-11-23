@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 15:56:09 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 16:20:04 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void				is_left(t_obj *obj, int len, int flag);
 void				is_zeroflag(t_obj *obj, int len, int flag);
 void				no_left_zeroflag(t_obj *obj, int len, int flag);
 void				is_not_null_c(t_obj *obj, char c);
-void				is_type_X(t_obj *obj);
+void				is_type_upper(t_obj *obj);
 void				process_width_x(t_obj *obj);
 char				*ft_lltoa(long long n);
 char				*ft_ptoa(long long n);
