@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 13:24:05 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 16:26:26 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		fill_precision_nbr(t_obj *obj)
 long long	get_num_d(va_list args, t_obj *obj)
 {
 	long long	n;
-	
+
 	if (obj->length == 3)
 		n = va_arg(args, long);
 	else if (obj->length == 4)
