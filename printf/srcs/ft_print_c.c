@@ -6,57 +6,67 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 17:10:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/10 21:27:29 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 13:24:12 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-char	*fill_width_null(t_obj *obj, char c)
+void	fill_width_null(t_obj *obj, char c)
 {
 	int		len;
-	char	*res;
+	char	*wid;
 
 	len = obj->width - 1;
-	res = (char *)calloc(len + 1, 1);
-	res = ft_memset(res, ' ', len);
+	wid = (char *)calloc(len + 1, 1);
+	wid = ft_memset(wid, ' ', len);
+	obj->res = ft_strjoin(wid, obj->res);
 	if (obj->left)
 	{
 		ft_putchar_fd(c, 1);
-		ft_putstr_fd(res, 1);
+		ft_putstr_fd(obj->res, 1);
 	}
 	else
 	{
-		ft_putstr_fd(res, 1);
+		ft_putstr_fd(obj->res, 1);
 		ft_putchar_fd(c, 1);
 	}
-	return (res);
+	free(wid);
+}
+
+void	is_not_null_c(t_obj *obj, char c)
+{
+	char	*ch;
+
+	ch = (char *)calloc(2, 1);
+	ch[0] = c;
+	obj->res = ft_strjoin(obj->res, ch);
+	if (obj->width > (int)ft_strlen(obj->res))
+		fill_width(obj);
+	ft_putstr_fd(obj->res, 1);
+	obj->return_value += ft_strlen(obj->res);
+	free(ch);
 }
 
 int		print_char(va_list args, t_obj *obj)
 {
 	char	c;
-	char	*res;
 
 	c = (char)va_arg(args, int);
 	if (c != '\0')
-	{
-		res = (char *)calloc(2, sizeof(char));
-		res[0] = c;
-		if (obj->width > (int)ft_strlen(res))
-			res = fill_width(obj, res);
-		ft_putstr_fd(res, 1);
-		obj->return_value += ft_strlen(res);
-	}
+		is_not_null_c(obj, c);
 	else
 	{
-		res = ft_strdup("");
 		if (obj->width > 1)
-			res = fill_width_null(obj, c);
+		{
+			fill_width_null(obj, c);
+			obj->return_value += ft_strlen(obj->res) + 1;
+		}
 		else
+		{
 			ft_putchar_fd(c, 1);
-		obj->return_value += ft_strlen(res) + 1;
+			obj->return_value += 1;
+		}
 	}
-	free(res);
 	return (1);
 }
