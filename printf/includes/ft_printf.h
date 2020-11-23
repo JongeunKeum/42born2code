@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 13:10:45 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 15:56:09 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	s_obj
 	char	*res;
 }				t_obj;
 
+int					ft_printf(const char *, ...);
 int					print_int(va_list args, t_obj *obj);
 int					print_char(va_list args, t_obj *obj);
 int					print_str(va_list args, t_obj *obj);
