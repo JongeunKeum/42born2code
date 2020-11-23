@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 16:46:44 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/21 17:32:39 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 13:07:45 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	check_length(const char *str, t_obj *obj)
 		if (str[obj->idx + 1] == 'l')
 		{
 			obj->length = 4;
-			obj->idx++;
+			while (str[obj->idx + 1] == 'l')
+				obj->idx++;
 		}
 		else
 			obj->length = 3;
