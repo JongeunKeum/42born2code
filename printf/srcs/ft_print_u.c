@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:13:22 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 13:24:30 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 16:27:38 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 unsigned long long	get_num_u(va_list args, t_obj *obj)
 {
 	unsigned long long	n;
-	
+
 	if (obj->length == 3)
 		n = va_arg(args, unsigned long);
 	else if (obj->length == 4)
@@ -31,7 +31,7 @@ unsigned long long	get_num_u(va_list args, t_obj *obj)
 	return (n);
 }
 
-int		print_unsigned_int(va_list args, t_obj *obj)
+int					print_unsigned_int(va_list args, t_obj *obj)
 {
 	unsigned long long	n;
 	char				*nbr;
