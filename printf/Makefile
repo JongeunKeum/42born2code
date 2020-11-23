@@ -3,13 +3,15 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar
 ARFLAGS = rc
 NAME = libftprintf.a
-SRCS = ./srcs/ft_printf.c ./srcs/ft_print_d.c \
+SRCS = ./srcs/ft_printf.c  ./srcs/ft_printf_utils.c\
 	   ./srcs/chk_format.c ./srcs/ft_lltoa.c \
+	   ./srcs/ft_print_d.c ./srcs/ft_print_u.c \
 	   ./srcs/ft_print_c.c ./srcs/ft_print_s.c \
-	   ./srcs/ft_print_u.c ./srcs/ft_print_hex.c \
-	   ./srcs/ft_convert_base.c ./srcs/ft_print_o.c \
-	   ./srcs/ft_print_p.c ./srcs/ft_ptoa.c \
-	   ./srcs/ft_print_n.c ./srcs/ft_printf_utils.c
+	   ./srcs/ft_print_hex.c ./srcs/ft_print_o.c\
+	   ./srcs/ft_print_p.c ./srcs/ft_print_n.c \
+	   ./srcs/ft_convert_base.c ./srcs/ft_ptoa.c \
+	   ./srcs/ft_fill_width.c
+
 OBJS = $(SRCS:.c=.o)
 LIB = libft.a
 LIB_DIR = ./libft
