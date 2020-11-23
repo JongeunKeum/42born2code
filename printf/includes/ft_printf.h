@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 16:20:04 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 16:28:54 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <limits.h>
 # include "../libft/libft.h"
 
-typedef struct	s_obj
+typedef struct		s_obj
 {
 	int		left;
 	int		zero;
@@ -36,9 +36,9 @@ typedef struct	s_obj
 	int		length;
 	int		return_value;
 	char	*res;
-}				t_obj;
+}					t_obj;
 
-int					ft_printf(const char *, ...);
+int					ft_printf(const char *str, ...);
 int					print_int(va_list args, t_obj *obj);
 int					print_char(va_list args, t_obj *obj);
 int					print_str(va_list args, t_obj *obj);
