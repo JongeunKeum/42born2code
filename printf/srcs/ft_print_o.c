@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:42:37 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 12:49:13 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 16:23:22 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 unsigned long long	get_num_o(va_list args, t_obj *obj)
 {
 	unsigned long long	n;
-	
+
 	if (obj->length == 3)
 		n = va_arg(args, unsigned long);
 	else if (obj->length == 4)
@@ -29,7 +29,18 @@ unsigned long long	get_num_o(va_list args, t_obj *obj)
 	return (n);
 }
 
-int		print_oct(va_list args, t_obj *obj)
+void				process_width_o(t_obj *obj)
+{
+	if (obj->width > (int)ft_strlen(obj->res) + obj->prefix)
+		fill_width(obj);
+	else
+	{
+		if (obj->prefix & (!obj->dot || !obj->precision))
+			obj->res = ft_strjoin("0", obj->res);
+	}
+}
+
+int					print_oct(va_list args, t_obj *obj)
 {
 	unsigned long long	n;
 	char				*nbr;
@@ -47,13 +58,7 @@ int		print_oct(va_list args, t_obj *obj)
 		obj->res = ft_strjoin(obj->res, nbr);
 	if (n == 0)
 		obj->prefix = 0;
-	if (obj->width > (int)ft_strlen(obj->res) + obj->prefix)
-		fill_width(obj);
-	else
-	{
-		if (obj->prefix && (!obj->dot || !obj->precision))
-			obj->res = ft_strjoin("0", obj->res);
-	}
+	process_width_o(obj);
 	ft_putstr_fd(obj->res, 1);
 	obj->return_value += ft_strlen(obj->res);
 	free(nbr);
