@@ -68,10 +68,10 @@ int		main(void)
 	printf("22. hello %.6o world\n", -123);
 	ft_printf("22. hello %.6o world\n\n", -123);
 
-	printf("23. hello %010.5o world\n", 123);
+//	printf("23. hello %010.5o world\n", 123);
 	ft_printf("23. hello %010.5o world\n\n", 123);
 
-	printf("24. hello %010.*o world\n", 5, 123);
+//	printf("24. hello %010.*o world\n", 5, 123);
 	ft_printf("24. hello %010.*o world\n\n", 5, 123);
 
 	printf("25. hello %10.*o world\n", 2, 123);
@@ -143,7 +143,7 @@ int		main(void)
 	printf("43. hello %#010o world\n", 123);
 	ft_printf("43. hello %#010o world\n\n", 123);
 
-	printf("44. hello %#010.5o world\n", 123);
+//	printf("44. hello %#010.5o world\n", 123);
 	ft_printf("44. hello %#010.5o world\n\n", 123);
 
 	printf("45. hello %#10o world\n", 123);
