@@ -1,46 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_o.c                                       :+:      :+:    :+:   */
+/*   ft_print_o_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:42:37 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/16 19:33:16 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 12:49:13 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
+unsigned long long	get_num_o(va_list args, t_obj *obj)
+{
+	unsigned long long	n;
+	
+	if (obj->length == 3)
+		n = va_arg(args, unsigned long);
+	else if (obj->length == 4)
+		n = va_arg(args, unsigned long long);
+	else if (obj->length == 1)
+		n = (unsigned short)va_arg(args, int);
+	else if (obj->length == 2)
+		n = (unsigned char)va_arg(args, int);
+	else
+		n = va_arg(args, unsigned int);
+	return (n);
+}
+
 int		print_oct(va_list args, t_obj *obj)
 {
-	unsigned int	n;
-	char			*nbr;
-	char			*res;
+	unsigned long long	n;
+	char				*nbr;
 
-	n = va_arg(args, unsigned int);
+	n = get_num_o(args, obj);
 	nbr = ft_lltoa(n);
 	if (n == 0)
 		nbr = ft_strdup("0");
 	else
 		nbr = ft_convert_base(nbr, "0123456789", "01234567");
 	obj->len = ft_strlen(nbr);
-	res = ft_strdup("");
 	if (obj->precision > obj->len)
-		res = fill_precision_nbr(obj, res);
-	if ((!obj->dot || obj->precision) || n != 0)
-		res = ft_strjoin(res, nbr);
+		fill_precision_nbr(obj);
+	if (n != 0 || (!obj->dot || obj->precision))
+		obj->res = ft_strjoin(obj->res, nbr);
 	if (n == 0)
 		obj->prefix = 0;
-	if (obj->width > (int)ft_strlen(res) + obj->prefix)
-		res = fill_width(obj, res);
+	if (obj->width > (int)ft_strlen(obj->res) + obj->prefix)
+		fill_width(obj);
 	else
 	{
 		if (obj->prefix && (!obj->dot || !obj->precision))
-			res = ft_strjoin("0", res);
+			obj->res = ft_strjoin("0", obj->res);
 	}
-	ft_putstr_fd(res, 1);
-	obj->return_value += ft_strlen(res);
-	free(res);
+	ft_putstr_fd(obj->res, 1);
+	obj->return_value += ft_strlen(obj->res);
+	free(nbr);
 	return (1);
 }
