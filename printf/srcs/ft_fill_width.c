@@ -6,30 +6,30 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 13:23:05 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 13:23:06 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/23 16:07:20 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void    is_left(t_obj *obj, int len, int flag)
+void	is_left(t_obj *obj, int len, int flag)
 {
-    char    *wid;
+	char	*wid;
 
-    wid = (char *)calloc(len + 1, 1);
-    if (obj->space)
-        obj->res = ft_strjoin(" ", obj->res);
-    else if (obj->sign)
-        obj->res = ft_strjoin("+", obj->res);
-    else if (obj->neg)
-        obj->res = ft_strjoin("-", obj->res);
-    else if (obj->prefix == 2)
-        obj->res = ft_strjoin("0x", obj->res);
-    else if (obj->prefix == 1)
-        obj->res = ft_strjoin("0", obj->res);
-    wid = ft_memset(wid + flag + obj->prefix, ' ', len - flag - obj->prefix);
-    obj->res = ft_strjoin(obj->res, wid);
-    free(wid - flag - obj->prefix);
+	wid = (char *)calloc(len + 1, 1);
+	if (obj->space)
+		obj->res = ft_strjoin(" ", obj->res);
+	else if (obj->sign)
+		obj->res = ft_strjoin("+", obj->res);
+	else if (obj->neg)
+		obj->res = ft_strjoin("-", obj->res);
+	else if (obj->prefix == 2)
+		obj->res = ft_strjoin("0x", obj->res);
+	else if (obj->prefix == 1)
+		obj->res = ft_strjoin("0", obj->res);
+	wid = ft_memset(wid + flag + obj->prefix, ' ', len - flag - obj->prefix);
+	obj->res = ft_strjoin(obj->res, wid);
+	free(wid - flag - obj->prefix);
 }
 
 void    is_zeroflag(t_obj *obj, int len, int flag)
