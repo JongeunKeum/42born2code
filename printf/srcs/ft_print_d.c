@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 16:26:26 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/25 21:45:35 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@ void		fill_precision_nbr(t_obj *obj)
 	char	*prec;
 
 	len = obj->precision - obj->len + obj->neg;
-	prec = (char *)calloc(len + 1, 1);
+	if (!(prec = (char *)ft_calloc(len + 1, 1)))
+		return ;
 	i = 0;
 	while (i < len)
 		prec[i++] = '0';
-	obj->res = ft_strjoin(obj->res, prec);
+	if (!(obj->res = ft_strjoin(obj->res, prec)))
+	{
+		free(prec);
+		return ;
+	}
 	free(prec);
 }
 
@@ -56,12 +61,19 @@ int			print_int(va_list args, t_obj *obj)
 	char		*nbr;
 
 	n = get_num_d(args, obj);
-	nbr = ft_lltoa(n);
+	if (!(nbr = ft_lltoa(n)))
+		return (0);
 	obj->len = ft_strlen(nbr);
 	if (obj->precision > obj->len - obj->neg)
 		fill_precision_nbr(obj);
 	if (n != 0 || (!obj->dot || obj->precision))
-		obj->res = ft_strjoin(obj->res, nbr + obj->neg);
+	{
+		if (!(obj->res = ft_strjoin(obj->res, nbr + obj->neg)))
+		{
+			free(nbr);
+			return (0);
+		}
+	}
 	if (obj->width > (int)ft_strlen(obj->res))
 		fill_width(obj);
 	else
@@ -72,6 +84,11 @@ int			print_int(va_list args, t_obj *obj)
 			obj->res = ft_strjoin("+", obj->res);
 		else if (obj->neg)
 			obj->res = ft_strjoin("-", obj->res);
+		if (!obj->res)
+		{
+			free(nbr);
+			return (0);
+		}
 	}
 	ft_putstr_fd(obj->res, 1);
 	obj->return_value += ft_strlen(obj->res);
