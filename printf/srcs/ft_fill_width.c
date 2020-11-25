@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 13:23:05 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 16:27:00 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/25 21:43:14 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	is_left(t_obj *obj, int len, int flag)
 {
 	char	*wid;
 
-	wid = (char *)calloc(len + 1, 1);
+	if (!(wid = (char *)ft_calloc(len + 1, 1)))
+		return ;
 	if (obj->space)
 		obj->res = ft_strjoin(" ", obj->res);
 	else if (obj->sign)
@@ -28,7 +29,11 @@ void	is_left(t_obj *obj, int len, int flag)
 	else if (obj->prefix == 1)
 		obj->res = ft_strjoin("0", obj->res);
 	wid = ft_memset(wid + flag + obj->prefix, ' ', len - flag - obj->prefix);
-	obj->res = ft_strjoin(obj->res, wid);
+	if (!(obj->res = ft_strjoin(obj->res, wid)))
+	{
+		free(wid - flag - obj->prefix);
+		return ;
+	}
 	free(wid - flag - obj->prefix);
 }
 
@@ -36,7 +41,8 @@ void	is_zeroflag(t_obj *obj, int len, int flag)
 {
 	char	*wid;
 
-	wid = (char *)calloc(obj->width + 1, 1);
+	if (!(wid = (char *)ft_calloc(obj->width + 1, 1)))
+		return ;
 	if (obj->space)
 		wid[0] = ' ';
 	else if (obj->sign)
@@ -46,7 +52,11 @@ void	is_zeroflag(t_obj *obj, int len, int flag)
 	ft_memset(wid + flag, '0', len - flag);
 	if (obj->prefix == 2)
 		wid[1] = 'x';
-	obj->res = ft_strjoin(wid, obj->res);
+	if (!(obj->res = ft_strjoin(wid, obj->res)))
+	{
+		free(wid);
+		return ;
+	}
 	free(wid);
 }
 
@@ -54,7 +64,8 @@ void	no_left_zeroflag(t_obj *obj, int len, int flag)
 {
 	char	*wid;
 
-	wid = (char *)calloc(obj->width + 1, 1);
+	if(!(wid = (char *)ft_calloc(obj->width + 1, 1)))
+		return ;
 	wid = ft_memset(wid, ' ', len - flag - obj->prefix);
 	if (obj->space)
 		wid[len - flag] = ' ';
@@ -70,7 +81,11 @@ void	no_left_zeroflag(t_obj *obj, int len, int flag)
 	else if (obj->prefix == 1)
 		wid[len - flag - obj->prefix] = '0';
 	wid[len] = '\0';
-	obj->res = ft_strjoin(wid, obj->res);
+	if (!(obj->res = ft_strjoin(wid, obj->res)))
+	{
+		free(wid);
+		return ;
+	}
 	free(wid);
 }
 
