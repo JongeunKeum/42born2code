@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:25:31 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/22 12:08:37 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/25 18:09:18 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_obj	*init_objs(void)
 	obj->dot = 0;
 	obj->length = 0;
 	obj->return_value = 0;
-	if (!(obj->res = (char *)calloc(1, 1)))
+	if (!(obj->res = (char *)ft_calloc(1, 1)))
 		return (NULL);
 	return (obj);
 }
@@ -51,7 +51,7 @@ void	set_objs(t_obj *obj)
 	obj->neg = 0;
 	obj->dot = 0;
 	obj->length = 0;
-	if (!(obj->res = (char *)calloc(1, 1)))
+	if (!(obj->res = (char *)ft_calloc(1, 1)))
 		return ;
 }
 
@@ -59,9 +59,11 @@ int		ft_printf(const char *str, ...)
 {
 	va_list	args;
 	t_obj	*obj;
+	int		result;
 
 	va_start(args, str);
-	obj = init_objs();
+	if (!(obj = init_objs()))
+		return (-1);
 	while (str[obj->idx])
 	{
 		if (str[obj->idx] == '%')
@@ -80,5 +82,7 @@ int		ft_printf(const char *str, ...)
 	}
 	va_end(args);
 	free(obj->res);
-	return (obj->return_value);
+	result = obj->return_value;
+	free(obj);
+	return (result);
 }
