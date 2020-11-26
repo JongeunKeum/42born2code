@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 16:46:44 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 13:07:45 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/26 17:08:16 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,25 @@
 
 void	check_length(const char *str, t_obj *obj)
 {
-	if (str[obj->idx] == 'l')
+	int	l_cnt;
+	int	h_cnt;
+
+	l_cnt = 0;
+	h_cnt = 0;
+	while (ft_strchr("lh", str[obj->idx]))
 	{
-		if (str[obj->idx + 1] == 'l')
-		{
-			obj->length = 4;
-			while (str[obj->idx + 1] == 'l')
-				obj->idx++;
-		}
+		if (str[obj->idx] == 'l')
+			l_cnt++;
 		else
-			obj->length = 3;
+			h_cnt++;
 		obj->idx++;
 	}
-	else if (str[obj->idx] == 'h')
-	{
-		if (str[obj->idx + 1] == 'h')
-		{
-			obj->length = 2;
-			obj->idx++;
-		}
-		else
-			obj->length = 1;
-		obj->idx++;
-	}
+	if (l_cnt > 1)
+		obj->length = 4;
+	else if (l_cnt == 1)
+		obj->length = 3;
+	else if (h_cnt > 1)
+		obj->length = 2;
+	else if (h_cnt == 1)
+		obj->length = 1;
 }
