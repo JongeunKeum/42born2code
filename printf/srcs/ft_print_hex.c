@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 20:09:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 16:19:43 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/26 17:43:06 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,22 @@ void				is_type_upper(t_obj *obj)
 		obj->res[i] = ft_toupper(obj->res[i]);
 }
 
-void				process_width_x(t_obj *obj)
+int					process_width_x(t_obj *obj)
 {
 	if (obj->width > (int)ft_strlen(obj->res) + obj->prefix)
-		fill_width(obj);
+	{
+		if (!(fill_width(obj)))
+			return (0);
+	}
 	else
 	{
 		if (obj->prefix)
-			obj->res = ft_strjoin("0x", obj->res);
+		{
+			if (!(obj->res = ft_strjoin("0x", obj->res)))
+				return (0);
+		}
 	}
+	return (1);
 }
 
 int					print_hex(va_list args, t_obj *obj)
@@ -55,23 +62,47 @@ int					print_hex(va_list args, t_obj *obj)
 	char				*nbr;
 
 	n = get_num_x(args, obj);
-	nbr = ft_lltoa(n);
+	if (!(nbr = ft_lltoa(n)))
+		return (0);
 	if (n == 0)
-		nbr = ft_strdup("0");
+	{
+		free(nbr);
+		if (!(nbr = ft_strdup("0")))
+			return (0);
+	}
 	else
-		nbr = ft_convert_base(nbr, "0123456789", "0123456789abcdef");
+	{
+		if (!(nbr = ft_convert_base(nbr, "0123456789", "0123456789abcdef")))
+		{
+			free(nbr);
+			return (0);
+		}
+	}
 	obj->len = ft_strlen(nbr);
 	if (obj->precision > obj->len)
-		fill_precision_nbr(obj);
+	{
+		if (!(fill_precision_nbr(obj)))
+		{
+			free(nbr);
+			return (0);
+		}
+	}
 	if (n != 0 || (!obj->dot || obj->precision))
-		obj->res = ft_strjoin(obj->res, nbr);
+	{
+		if (!(obj->res = ft_strjoin(obj->res, nbr)))
+		{
+			free(nbr);
+			return (0);
+		}
+	}
+	free(nbr);
 	if (n == 0)
 		obj->prefix = 0;
-	process_width_x(obj);
+	if (!(process_width_x(obj)))
+		return (0);
 	if (obj->type == 'X')
 		is_type_upper(obj);
 	ft_putstr_fd(obj->res, 1);
 	obj->return_value += ft_strlen(obj->res);
-	free(nbr);
 	return (1);
 }

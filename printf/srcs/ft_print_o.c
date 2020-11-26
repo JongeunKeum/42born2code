@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:42:37 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/23 16:23:22 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/26 18:10:36 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,22 @@ unsigned long long	get_num_o(va_list args, t_obj *obj)
 	return (n);
 }
 
-void				process_width_o(t_obj *obj)
+int					process_width_o(t_obj *obj)
 {
 	if (obj->width > (int)ft_strlen(obj->res) + obj->prefix)
-		fill_width(obj);
+	{
+		if (!(fill_width(obj)))
+			return (0);
+	}
 	else
 	{
 		if (obj->prefix & (!obj->dot || !obj->precision))
-			obj->res = ft_strjoin("0", obj->res);
+		{
+			if (!(obj->res = ft_strjoin("0", obj->res)))
+				return (0);
+		}
 	}
+	return (1);
 }
 
 int					print_oct(va_list args, t_obj *obj)
@@ -46,21 +53,45 @@ int					print_oct(va_list args, t_obj *obj)
 	char				*nbr;
 
 	n = get_num_o(args, obj);
-	nbr = ft_lltoa(n);
+	if (!(nbr = ft_lltoa(n)))
+		return (0);
 	if (n == 0)
-		nbr = ft_strdup("0");
+	{
+		free(nbr);
+		if (!(nbr = ft_strdup("0")))
+			return (0);
+	}
 	else
-		nbr = ft_convert_base(nbr, "0123456789", "01234567");
+	{
+		if (!(nbr = ft_convert_base(nbr, "0123456789", "01234567")))
+		{
+			free(nbr);
+			return (0);
+		}
+	}
 	obj->len = ft_strlen(nbr);
 	if (obj->precision > obj->len)
-		fill_precision_nbr(obj);
+	{
+		if (!(fill_precision_nbr(obj)))
+		{
+			free(nbr);
+			return (0);
+		}
+	}
 	if (n != 0 || (!obj->dot || obj->precision))
-		obj->res = ft_strjoin(obj->res, nbr);
+	{
+		if (!(obj->res = ft_strjoin(obj->res, nbr)))
+		{
+			free(nbr);
+			return (0);
+		}
+	}
+	free(nbr);
 	if (n == 0)
 		obj->prefix = 0;
-	process_width_o(obj);
+	if (!(process_width_o(obj)))
+		return (0);
 	ft_putstr_fd(obj->res, 1);
 	obj->return_value += ft_strlen(obj->res);
-	free(nbr);
 	return (1);
 }
