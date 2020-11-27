@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:13:22 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/26 18:14:24 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/27 19:09:47 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int					print_unsigned_int(va_list args, t_obj *obj)
 	char				*nbr;
 
 	n = get_num_u(args, obj);
-	if (!(nbr = ft_lltoa(n)))
+	if (!(nbr = ft_ulltoa(n)))
 		return (0);
 	obj->len = ft_strlen(nbr);
 	if (obj->precision > obj->len)
