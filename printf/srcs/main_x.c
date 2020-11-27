@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "../includes/ft_printf.h"
 
-int		ft_printf(const char *str, ...);
-
 int		main(void)
 {
 	printf("return:%d\n", printf("01. hello %x world %10x\n\n", 12345, -9876));
@@ -256,6 +254,9 @@ int		main(void)
 
 //	printf("60. hello %+-8.3x world\n", -8473);
 //	ft_printf("60. hello %+-8.3x world\n\n", -8473);
+
+	printf("61. hello %-4.lx world\n", ULONG_MAX);
+	ft_printf("61. hello %-4.lx world\n\n", ULONG_MAX);
 
 	return (0);
 }

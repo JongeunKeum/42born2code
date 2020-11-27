@@ -197,5 +197,14 @@ int		main(void)
 //	printf("60. hello %+-8.3u world\n", -8473);
 //	ft_printf("60. hello %+-8.3u world\n\n", -8473);
 
+	printf("61. -->|%-4.lu|<--\n", ULONG_MAX);
+	ft_printf("61. -->|%-4.lu|<--\n\n", ULONG_MAX);
+
+	printf("62. -->|%-4.lu|<--\n", ULONG_MAX - 1);
+	ft_printf("62. -->|%-4.lu|<--\n\n", ULONG_MAX - 1);
+
+	printf("63. -->|%-4.llu|<--\n", ULLONG_MAX);
+	ft_printf("63. -->|%-4.llu|<--\n\n", ULLONG_MAX);
+
 	return (0);
 }
