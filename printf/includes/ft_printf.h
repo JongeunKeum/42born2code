@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/26 17:51:03 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/27 20:14:59 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void				is_type_upper(t_obj *obj);
 int					process_width_x(t_obj *obj);
 int					process_width_o(t_obj *obj);
 char				*ft_lltoa(long long n);
+char				*ft_strrev(char *str);
+char				*ft_ulltoa(unsigned long long n);
 char				*ft_ptoa(long long n);
 char				*ft_convert_base(char *nbr, char *base_from, char *base_to);
 
