@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 20:12:57 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/27 20:13:27 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/27 21:22:01 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,6 @@ char	*ft_ulltoa(unsigned long long n)
 	if (n == 0)
 		return (ft_strdup("0"));
 	sign = 0;
-	if (n < 0)
-	{
-		sign = 1;
-		n *= -1;
-	}
 	len = n_len_u(n);
 	if (!(res = (char *)malloc(len + sign + 1)))
 		return (NULL);
