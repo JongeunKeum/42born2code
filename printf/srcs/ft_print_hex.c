@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 20:09:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/26 17:43:06 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/27 20:03:59 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int					print_hex(va_list args, t_obj *obj)
 	char				*nbr;
 
 	n = get_num_x(args, obj);
-	if (!(nbr = ft_lltoa(n)))
+	if (!(nbr = ft_ulltoa(n)))
 		return (0);
 	if (n == 0)
 	{
