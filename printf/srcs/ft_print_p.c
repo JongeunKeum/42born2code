@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 15:51:46 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/26 17:58:10 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/27 20:04:35 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ int	print_percent(t_obj *obj)
 {
 	char	*per;
 
+	obj->sign = 0;
+	obj->prefix = 0;
+	obj->space = 0;
+	obj->dot = 0;
 	if (!(per = ft_strdup("%")))
 		return (0);
 	if (!(obj->res = ft_strjoin(per, obj->res)))
