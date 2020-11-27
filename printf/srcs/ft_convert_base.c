@@ -6,16 +6,16 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:40:37 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/25 16:24:50 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/27 20:04:03 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-long long	ft_atoll(char *str, int len, int *match)
+unsigned long long	ft_atoull(char *str, int len, int *match)
 {
-	int			i;
-	long long	value;
+	int					i;
+	unsigned long long	value;
 
 	i = 0;
 	value = 0;
@@ -27,12 +27,12 @@ long long	ft_atoll(char *str, int len, int *match)
 	return (value);
 }
 
-long long	ft_atoll_base(char *nbr, char *base_from)
+unsigned long long	ft_atoull_base(char *nbr, char *base_from)
 {
-	int			i;
-	int			len;
-	int			match[256];
-	long long	base_nbr;
+	int					i;
+	int					len;
+	int					match[256];
+	unsigned long long	base_nbr;
 
 	len = ft_strlen(base_from);
 	i = 0;
@@ -44,18 +44,18 @@ long long	ft_atoll_base(char *nbr, char *base_from)
 		match[(unsigned char)base_from[i]] = i;
 		i++;
 	}
-	base_nbr = ft_atoll(nbr, len, match);
+	base_nbr = ft_atoull(nbr, len, match);
 	return (base_nbr);
 }
 
-int			res_len(long long nbr, char *base_to)
+int					res_len(unsigned long long nbr, char *base_to)
 {
 	int	base_len;
 	int	res_len;
 
 	base_len = ft_strlen(base_to);
 	res_len = 1;
-	while (nbr > base_len)
+	while (nbr > (unsigned long long)base_len)
 	{
 		nbr /= base_len;
 		res_len++;
@@ -63,8 +63,7 @@ int			res_len(long long nbr, char *base_to)
 	return (res_len);
 }
 
-char		*ft_putnbr_base(long long nbr, int res_len,
-		char *result, char *base_to)
+char				*ft_putnbr_base(unsigned long long nbr, int res_len, char *result, char *base_to)
 {
 	int	base_len;
 
@@ -77,13 +76,13 @@ char		*ft_putnbr_base(long long nbr, int res_len,
 	return (result);
 }
 
-char		*ft_convert_base(char *nbr, char *base_from, char *base_to)
+char				*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int			len;
-	long long	base_nbr;
-	char		*result;
+	int					len;
+	unsigned long long	base_nbr;
+	char				*result;
 
-	base_nbr = ft_atoll_base(nbr, base_from);
+	base_nbr = ft_atoull_base(nbr, base_from);
 	len = res_len(base_nbr, base_to);
 	if (!(result = (char *)ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
