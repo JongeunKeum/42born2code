@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:42:37 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/26 18:10:36 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/27 20:57:20 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int					print_oct(va_list args, t_obj *obj)
 	char				*nbr;
 
 	n = get_num_o(args, obj);
-	if (!(nbr = ft_lltoa(n)))
+	if (!(nbr = ft_ulltoa(n)))
 		return (0);
 	if (n == 0)
 	{
