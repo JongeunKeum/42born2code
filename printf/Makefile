@@ -4,7 +4,7 @@ AR = ar
 ARFLAGS = rc
 NAME = libftprintf.a
 SRCS = ./srcs/ft_printf.c  ./srcs/ft_printf_utils.c\
-	   ./srcs/chk_format.c ./srcs/ft_lltoa.c \
+	   ./srcs/ft_chk_format.c ./srcs/ft_lltoa.c \
 	   ./srcs/ft_print_d.c ./srcs/ft_print_u.c \
 	   ./srcs/ft_print_c.c ./srcs/ft_print_s.c \
 	   ./srcs/ft_print_hex.c ./srcs/ft_print_o.c\
