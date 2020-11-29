@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:25:31 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 13:57:01 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 15:43:28 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,12 @@ int		ft_printf(const char *str, ...)
 		if (str[obj->idx] == '%')
 		{
 			set_objs(obj);
-			obj->res = ft_strdup("");
 			if (!(check_format(str, args, obj)))
 			{
 				free(obj->res);
 				free(obj);
 				return (-1);
 			}
-			free(obj->res);
 		}
 		else
 		{
