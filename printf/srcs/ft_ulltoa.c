@@ -6,13 +6,13 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 20:12:57 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/27 21:22:01 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 17:07:12 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		n_len_u(unsigned long long n)
+static int		n_len_u(unsigned long long n)
 {
 	int	len;
 
@@ -25,7 +25,8 @@ int		n_len_u(unsigned long long n)
 	return (len);
 }
 
-char	*get_arr_u(char *res, unsigned long long n, int len, int sign)
+static char		*get_arr_u(char *res, unsigned long long n,
+		int len, int sign)
 {
 	int	i;
 
@@ -47,7 +48,7 @@ char	*get_arr_u(char *res, unsigned long long n, int len, int sign)
 	return (res);
 }
 
-char	*ft_ulltoa(unsigned long long n)
+char			*ft_ulltoa(unsigned long long n)
 {
 	int		len;
 	int		sign;

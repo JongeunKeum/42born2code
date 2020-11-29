@@ -6,13 +6,13 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 21:00:10 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/16 17:51:10 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 17:06:36 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		adr_len(long long n)
+static int		adr_len(long long n)
 {
 	int	len;
 
@@ -25,25 +25,7 @@ int		adr_len(long long n)
 	return (len);
 }
 
-char	*ft_strrev_p(char *str)
-{
-	int		i;
-	int		len;
-	char	tmp;
-
-	len = ft_strlen(str);
-	i = 0;
-	while (i < --len)
-	{
-		tmp = str[i];
-		str[i] = str[len];
-		str[len] = tmp;
-		i++;
-	}
-	return (str);
-}
-
-char	*get_arr_p(char *res, long long n, int len, int sign)
+static char		*get_arr_p(char *res, long long n, int len, int sign)
 {
 	int	i;
 
@@ -63,12 +45,12 @@ char	*get_arr_p(char *res, long long n, int len, int sign)
 		}
 		if (sign == 1)
 			res[i] = '-';
-		res = ft_strrev_p(res);
+		res = ft_strrev(res);
 	}
 	return (res);
 }
 
-char	*ft_ptoa(long long n)
+char			*ft_ptoa(long long n)
 {
 	int		len;
 	int		sign;
