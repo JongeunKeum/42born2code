@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:40:37 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/27 20:04:03 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 15:34:44 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char				*ft_convert_base(char *nbr, char *base_from, char *base_to)
 
 	base_nbr = ft_atoull_base(nbr, base_from);
 	len = res_len(base_nbr, base_to);
+	free(nbr);
 	if (!(result = (char *)ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
 	return (ft_putnbr_base(base_nbr, len, result, base_to));
