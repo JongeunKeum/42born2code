@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 17:10:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/26 17:46:31 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 14:02:31 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	fill_width_null(t_obj *obj, char c)
 	if (!(wid = (char *)ft_calloc(len + 1, 1)))
 		return (0);
 	wid = ft_memset(wid, ' ', len);
-	if (!(obj->res = ft_strjoin(wid, obj->res)))
+	if (!(obj->res = ft_strjoin_free(wid, obj->res, 2)))
 	{
 		free(wid);
 		return (0);
@@ -47,7 +47,7 @@ int	is_not_null_c(t_obj *obj, char c)
 	if (!(ch = (char *)ft_calloc(2, 1)))
 		return (0);
 	ch[0] = c;
-	if (!(obj->res = ft_strjoin(obj->res, ch)))
+	if (!(obj->res = ft_strjoin_free(obj->res, ch, 1)))
 	{
 		free(ch);
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:13:22 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/27 19:09:47 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 14:05:51 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int					print_unsigned_int(va_list args, t_obj *obj)
 	}
 	if (n != 0 || (!obj->dot || obj->precision))
 	{
-		if (!(obj->res = ft_strjoin(obj->res, nbr + obj->neg)))
+		if (!(obj->res = ft_strjoin_free(obj->res, nbr + obj->neg, 1)))
 		{
 			free(nbr);
 			return (0);
@@ -65,9 +65,9 @@ int					print_unsigned_int(va_list args, t_obj *obj)
 	else
 	{
 		if (obj->space)
-			obj->res = ft_strjoin(" ", obj->res);
+			obj->res = ft_strjoin_free(" ", obj->res, 2);
 		else if (obj->sign)
-			obj->res = ft_strjoin("+", obj->res);
+			obj->res = ft_strjoin_free("+", obj->res, 2);
 		if (!obj->res)
 			return (0);
 	}

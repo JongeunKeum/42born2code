@@ -6,11 +6,12 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/26 17:45:38 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 13:45:09 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <stdio.h>
 
 int			fill_precision_nbr(t_obj *obj)
 {
@@ -24,7 +25,7 @@ int			fill_precision_nbr(t_obj *obj)
 	i = 0;
 	while (i < len)
 		prec[i++] = '0';
-	if (!(obj->res = ft_strjoin(obj->res, prec)))
+	if (!(obj->res = ft_strjoin_free(obj->res, prec, 1)))
 	{
 		free(prec);
 		return (0);
@@ -75,7 +76,7 @@ int			print_int(va_list args, t_obj *obj)
 	}
 	if (n != 0 || (!obj->dot || obj->precision))
 	{
-		if (!(obj->res = ft_strjoin(obj->res, nbr + obj->neg)))
+		if (!(obj->res = ft_strjoin_free(obj->res, nbr + obj->neg, 1)))
 		{
 			free(nbr);
 			return (0);
@@ -90,11 +91,11 @@ int			print_int(va_list args, t_obj *obj)
 	else
 	{
 		if (obj->space)
-			obj->res = ft_strjoin(" ", obj->res);
+			obj->res = ft_strjoin_free(" ", obj->res, 2);
 		else if (obj->sign)
-			obj->res = ft_strjoin("+", obj->res);
+			obj->res = ft_strjoin_free("+", obj->res, 2);
 		else if (obj->neg)
-			obj->res = ft_strjoin("-", obj->res);
+			obj->res = ft_strjoin_free("-", obj->res, 2);
 		if (!obj->res)
 			return (0);
 	}
