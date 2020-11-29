@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 15:51:46 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/27 20:04:35 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 14:04:49 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	print_percent(t_obj *obj)
 	obj->dot = 0;
 	if (!(per = ft_strdup("%")))
 		return (0);
-	if (!(obj->res = ft_strjoin(per, obj->res)))
+	if (!(obj->res = ft_strjoin_free(per, obj->res, 2)))
 	{
 		free(per);
 		return (0);
@@ -59,7 +59,7 @@ int	print_address(va_list args, t_obj *obj)
 	}
 	if ((!obj->dot || obj->precision) || n != 0)
 	{
-		if (!(obj->res = ft_strjoin(obj->res, adr)))
+		if (!(obj->res = ft_strjoin_free(obj->res, adr, 1)))
 		{
 			free(adr);
 			return (0);
@@ -75,7 +75,7 @@ int	print_address(va_list args, t_obj *obj)
 	{
 		if (obj->prefix)
 		{
-			if (!(obj->res = ft_strjoin("0x", obj->res)))
+			if (!(obj->res = ft_strjoin_free("0x", obj->res, 2)))
 				return (0);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 14:58:56 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/26 18:12:27 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 14:27:33 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		print_str(va_list args, t_obj *obj)
 	}
 	else
 	{
-		if (!(obj->res = ft_strjoin(obj->res, s)))
+		if (!(obj->res = ft_strjoin_free(obj->res, s, 1)))
 		{
 			free(null);
 			return (0);

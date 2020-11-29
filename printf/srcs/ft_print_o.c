@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:42:37 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/27 20:57:20 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 14:04:08 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int					process_width_o(t_obj *obj)
 	{
 		if (obj->prefix & (!obj->dot || !obj->precision))
 		{
-			if (!(obj->res = ft_strjoin("0", obj->res)))
+			if (!(obj->res = ft_strjoin_free("0", obj->res, 2)))
 				return (0);
 		}
 	}
@@ -80,7 +80,7 @@ int					print_oct(va_list args, t_obj *obj)
 	}
 	if (n != 0 || (!obj->dot || obj->precision))
 	{
-		if (!(obj->res = ft_strjoin(obj->res, nbr)))
+		if (!(obj->res = ft_strjoin_free(obj->res, nbr, 1)))
 		{
 			free(nbr);
 			return (0);
