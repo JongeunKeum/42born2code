@@ -6,13 +6,13 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:25:31 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 15:43:28 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 16:52:34 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-t_obj	*init_objs(void)
+static t_obj	*init_objs(void)
 {
 	t_obj	*obj;
 
@@ -23,7 +23,7 @@ t_obj	*init_objs(void)
 	return (obj);
 }
 
-void	set_objs(t_obj *obj)
+static void		set_objs(t_obj *obj)
 {
 	obj->left = 0;
 	obj->zero = 0;
@@ -39,7 +39,27 @@ void	set_objs(t_obj *obj)
 	obj->length = 0;
 }
 
-int		ft_printf(const char *str, ...)
+static int		is_percent(const char *str, va_list args, t_obj *obj)
+{
+	if (str[obj->idx] == '%')
+	{
+		set_objs(obj);
+		if (!(check_format(str, args, obj)))
+		{
+			free(obj->res);
+			free(obj);
+			return (0);
+		}
+	}
+	else
+	{
+		write(1, &str[obj->idx], 1);
+		obj->return_value++;
+	}
+	return (1);
+}
+
+int				ft_printf(const char *str, ...)
 {
 	va_list	args;
 	t_obj	*obj;
@@ -50,21 +70,8 @@ int		ft_printf(const char *str, ...)
 		return (-1);
 	while (str[obj->idx])
 	{
-		if (str[obj->idx] == '%')
-		{
-			set_objs(obj);
-			if (!(check_format(str, args, obj)))
-			{
-				free(obj->res);
-				free(obj);
-				return (-1);
-			}
-		}
-		else
-		{
-			write(1, &str[obj->idx], 1);
-			obj->return_value++;
-		}
+		if (!(is_percent(str, args, obj)))
+			return (-1);
 		obj->idx++;
 	}
 	va_end(args);
