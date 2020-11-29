@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/27 20:14:59 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 13:49:23 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ char				*ft_strrev(char *str);
 char				*ft_ulltoa(unsigned long long n);
 char				*ft_ptoa(long long n);
 char				*ft_convert_base(char *nbr, char *base_from, char *base_to);
+char				*ft_strjoin_free(char *s1, char *s2, int to_free);
 
 #endif
