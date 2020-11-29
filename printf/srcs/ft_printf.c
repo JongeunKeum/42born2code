@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:25:31 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/27 17:24:14 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 13:57:01 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int		ft_printf(const char *str, ...)
 	va_list	args;
 	t_obj	*obj;
 	int		result;
-	char	*temp;
 
 	va_start(args, str);
 	if (!(obj = init_objs()))
@@ -54,8 +53,7 @@ int		ft_printf(const char *str, ...)
 		if (str[obj->idx] == '%')
 		{
 			set_objs(obj);
-			temp = ft_strdup("");
-			obj->res = temp;
+			obj->res = ft_strdup("");
 			if (!(check_format(str, args, obj)))
 			{
 				free(obj->res);
