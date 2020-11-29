@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 13:23:05 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/26 18:24:24 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 14:00:41 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ int	is_left(t_obj *obj, int len, int flag)
 	if (!(wid = (char *)ft_calloc(len + 1, 1)))
 		return (0);
 	if (obj->space)
-		obj->res = ft_strjoin(" ", obj->res);
+		obj->res = ft_strjoin_free(" ", obj->res, 2);
 	else if (obj->sign)
-		obj->res = ft_strjoin("+", obj->res);
+		obj->res = ft_strjoin_free("+", obj->res, 2);
 	else if (obj->neg)
-		obj->res = ft_strjoin("-", obj->res);
+		obj->res = ft_strjoin_free("-", obj->res, 2);
 	else if (obj->prefix == 2)
-		obj->res = ft_strjoin("0x", obj->res);
+		obj->res = ft_strjoin_free("0x", obj->res, 2);
 	else if (obj->prefix == 1)
-		obj->res = ft_strjoin("0", obj->res);
+		obj->res = ft_strjoin_free("0", obj->res, 2);
 	wid = ft_memset(wid + flag + obj->prefix, ' ', len - flag - obj->prefix);
-	if (!(obj->res = ft_strjoin(obj->res, wid)))
+	if (!(obj->res = ft_strjoin_free(obj->res, wid, 1)))
 	{
 		free(wid - flag - obj->prefix);
 		return (0);
@@ -53,7 +53,7 @@ int	is_zeroflag(t_obj *obj, int len, int flag)
 	ft_memset(wid + flag, '0', len - flag);
 	if (obj->prefix == 2)
 		wid[1] = 'x';
-	if (!(obj->res = ft_strjoin(wid, obj->res)))
+	if (!(obj->res = ft_strjoin_free(wid, obj->res, 2)))
 	{
 		free(wid);
 		return (0);
@@ -82,7 +82,7 @@ int	no_left_zeroflag(t_obj *obj, int len, int flag)
 	}
 	else if (obj->prefix == 1)
 		wid[len - flag - obj->prefix] = '0';
-	if (!(obj->res = ft_strjoin(wid, obj->res)))
+	if (!(obj->res = ft_strjoin_free(wid, obj->res, 2)))
 	{
 		free(wid);
 		return (0);
