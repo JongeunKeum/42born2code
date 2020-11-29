@@ -6,13 +6,13 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 13:23:05 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 14:00:41 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 16:55:10 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	is_left(t_obj *obj, int len, int flag)
+static int	is_left(t_obj *obj, int len, int flag)
 {
 	char	*wid;
 
@@ -38,7 +38,7 @@ int	is_left(t_obj *obj, int len, int flag)
 	return (1);
 }
 
-int	is_zeroflag(t_obj *obj, int len, int flag)
+static int	is_zeroflag(t_obj *obj, int len, int flag)
 {
 	char	*wid;
 
@@ -62,7 +62,7 @@ int	is_zeroflag(t_obj *obj, int len, int flag)
 	return (1);
 }
 
-int	no_left_zeroflag(t_obj *obj, int len, int flag)
+static int	no_left_zeroflag(t_obj *obj, int len, int flag)
 {
 	char	*wid;
 
@@ -91,7 +91,7 @@ int	no_left_zeroflag(t_obj *obj, int len, int flag)
 	return (1);
 }
 
-int	fill_width(t_obj *obj)
+int			fill_width(t_obj *obj)
 {
 	int	len;
 	int	prev_len;
