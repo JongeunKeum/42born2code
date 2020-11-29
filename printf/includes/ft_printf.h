@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 13:49:23 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 17:04:27 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,10 @@ int					print_oct(va_list args, t_obj *obj);
 int					print_address(va_list args, t_obj *obj);
 int					print_percent(t_obj *obj);
 int					print_num_ch(va_list args, t_obj *obj);
-long long			get_num_d(va_list args, t_obj *obj);
-unsigned long long	get_num_u(va_list args, t_obj *obj);
-unsigned long long	get_num_o(va_list args, t_obj *obj);
-unsigned long long	get_num_x(va_list args, t_obj *obj);
-void				check_width(const char *str, t_obj *obj, va_list args);
-void				check_precision(const char *str, t_obj *obj, va_list args);
-void				check_flag(const char *str, t_obj *obj);
-int					check_type(va_list args, t_obj *obj);
 int					check_format(const char *str, va_list args, t_obj *obj);
 void				check_length(const char *str, t_obj *obj);
 int					fill_precision_nbr(t_obj *obj);
 int					fill_width(t_obj *obj);
-int					fill_width_null(t_obj *obj, char c);
-int					is_left(t_obj *obj, int len, int flag);
-int					is_zeroflag(t_obj *obj, int len, int flag);
-int					no_left_zeroflag(t_obj *obj, int len, int flag);
-int					is_not_null_c(t_obj *obj, char c);
-void				is_type_upper(t_obj *obj);
-int					process_width_x(t_obj *obj);
-int					process_width_o(t_obj *obj);
 char				*ft_lltoa(long long n);
 char				*ft_strrev(char *str);
 char				*ft_ulltoa(unsigned long long n);
