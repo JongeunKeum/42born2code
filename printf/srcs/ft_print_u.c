@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:13:22 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 14:05:51 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 15:41:58 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int					print_unsigned_int(va_list args, t_obj *obj)
 	unsigned long long	n;
 	char				*nbr;
 
+	obj->res = (char *)ft_calloc(1, 1);
 	n = get_num_u(args, obj);
 	if (!(nbr = ft_ulltoa(n)))
 		return (0);
@@ -73,5 +74,6 @@ int					print_unsigned_int(va_list args, t_obj *obj)
 	}
 	ft_putstr_fd(obj->res, 1);
 	obj->return_value += ft_strlen(obj->res);
+	free(obj->res);
 	return (1);
 }

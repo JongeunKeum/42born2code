@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 17:10:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 14:02:31 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 15:37:53 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	print_char(va_list args, t_obj *obj)
 {
 	char	c;
 
+	obj->res = (char *)ft_calloc(1, 1);
 	c = (char)va_arg(args, int);
 	if (c != '\0')
 	{
@@ -87,5 +88,6 @@ int	print_char(va_list args, t_obj *obj)
 			obj->return_value += 1;
 		}
 	}
+	free(obj->res);
 	return (1);
 }

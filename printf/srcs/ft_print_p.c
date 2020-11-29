@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 15:51:46 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 14:04:49 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 15:43:18 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	print_percent(t_obj *obj)
 {
 	char	*per;
 
+	obj->res = (char *)ft_calloc(1, 1);
 	obj->sign = 0;
 	obj->prefix = 0;
 	obj->space = 0;
@@ -36,6 +37,7 @@ int	print_percent(t_obj *obj)
 	}
 	ft_putstr_fd(obj->res, 1);
 	obj->return_value += ft_strlen(obj->res);
+	free(obj->res);
 	return (1);
 }
 
@@ -44,6 +46,7 @@ int	print_address(va_list args, t_obj *obj)
 	unsigned long long	n;
 	char				*adr;
 
+	obj->res = (char *)ft_calloc(1, 1);
 	n = (unsigned long long)va_arg(args, void *);
 	if (!(adr = ft_ptoa(n)))
 		return (0);
@@ -81,5 +84,6 @@ int	print_address(va_list args, t_obj *obj)
 	}
 	ft_putstr_fd(obj->res, 1);
 	obj->return_value += ft_strlen(obj->res);
+	free(obj->res);
 	return (1);
 }

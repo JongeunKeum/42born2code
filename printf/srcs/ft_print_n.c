@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 11:50:46 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 14:23:33 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 15:39:50 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ int	print_num_ch(va_list args, t_obj *obj)
 		*(short *)va_arg(args, void *) = (short)n;
 	else
 		*(int *)va_arg(args, void *) = (int)n;
-//	n = obj->return_value;
 	return (1);
 }
