@@ -6,13 +6,13 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 17:10:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 15:37:53 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 16:58:08 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	fill_width_null(t_obj *obj, char c)
+static int	fill_width_null(t_obj *obj, char c)
 {
 	int		len;
 	char	*wid;
@@ -40,7 +40,7 @@ int	fill_width_null(t_obj *obj, char c)
 	return (1);
 }
 
-int	is_not_null_c(t_obj *obj, char c)
+static int	is_not_null_c(t_obj *obj, char c)
 {
 	char	*ch;
 
@@ -63,7 +63,7 @@ int	is_not_null_c(t_obj *obj, char c)
 	return (1);
 }
 
-int	print_char(va_list args, t_obj *obj)
+int			print_char(va_list args, t_obj *obj)
 {
 	char	c;
 

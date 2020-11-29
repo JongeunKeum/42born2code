@@ -6,13 +6,13 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:13:22 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 15:41:58 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 17:05:16 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-unsigned long long	get_num_u(va_list args, t_obj *obj)
+static unsigned long long	get_num_u(va_list args, t_obj *obj)
 {
 	unsigned long long	n;
 
@@ -31,16 +31,9 @@ unsigned long long	get_num_u(va_list args, t_obj *obj)
 	return (n);
 }
 
-int					print_unsigned_int(va_list args, t_obj *obj)
+static int					process_precision_u(unsigned long long n,
+		char *nbr, t_obj *obj)
 {
-	unsigned long long	n;
-	char				*nbr;
-
-	obj->res = (char *)ft_calloc(1, 1);
-	n = get_num_u(args, obj);
-	if (!(nbr = ft_ulltoa(n)))
-		return (0);
-	obj->len = ft_strlen(nbr);
 	if (obj->precision > obj->len)
 	{
 		if (!(fill_precision_nbr(obj)))
@@ -57,7 +50,11 @@ int					print_unsigned_int(va_list args, t_obj *obj)
 			return (0);
 		}
 	}
-	free(nbr);
+	return (1);
+}
+
+static int					process_width_u(t_obj *obj)
+{
 	if (obj->width > (int)ft_strlen(obj->res))
 	{
 		if (!(fill_width(obj)))
@@ -72,6 +69,24 @@ int					print_unsigned_int(va_list args, t_obj *obj)
 		if (!obj->res)
 			return (0);
 	}
+	return (1);
+}
+
+int							print_unsigned_int(va_list args, t_obj *obj)
+{
+	unsigned long long	n;
+	char				*nbr;
+
+	obj->res = (char *)ft_calloc(1, 1);
+	n = get_num_u(args, obj);
+	if (!(nbr = ft_ulltoa(n)))
+		return (0);
+	obj->len = ft_strlen(nbr);
+	if (!(process_precision_u(n, nbr, obj)))
+		return (0);
+	free(nbr);
+	if (!(process_width_u(obj)))
+		return (0);
 	ft_putstr_fd(obj->res, 1);
 	obj->return_value += ft_strlen(obj->res);
 	free(obj->res);

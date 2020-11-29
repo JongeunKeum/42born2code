@@ -6,13 +6,13 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 16:42:37 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 15:40:17 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 17:03:30 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-unsigned long long	get_num_o(va_list args, t_obj *obj)
+static unsigned long long	get_num_o(va_list args, t_obj *obj)
 {
 	unsigned long long	n;
 
@@ -29,8 +29,10 @@ unsigned long long	get_num_o(va_list args, t_obj *obj)
 	return (n);
 }
 
-int					process_width_o(t_obj *obj)
+static int					process_width_o(unsigned long long n, t_obj *obj)
 {
+	if (n == 0)
+		obj->prefix = 0;
 	if (obj->width > (int)ft_strlen(obj->res) + obj->prefix)
 	{
 		if (!(fill_width(obj)))
@@ -47,30 +49,9 @@ int					process_width_o(t_obj *obj)
 	return (1);
 }
 
-int					print_oct(va_list args, t_obj *obj)
+static int					process_precision_o(unsigned long long n,
+		char *nbr, t_obj *obj)
 {
-	unsigned long long	n;
-	char				*nbr;
-
-	obj->res = (char *)ft_calloc(1, 1);
-	n = get_num_o(args, obj);
-	if (!(nbr = ft_ulltoa(n)))
-		return (0);
-	if (n == 0)
-	{
-		free(nbr);
-		if (!(nbr = ft_strdup("0")))
-			return (0);
-	}
-	else
-	{
-		if (!(nbr = ft_convert_base(nbr, "0123456789", "01234567")))
-		{
-			free(nbr);
-			return (0);
-		}
-	}
-	obj->len = ft_strlen(nbr);
 	if (obj->precision > obj->len)
 	{
 		if (!(fill_precision_nbr(obj)))
@@ -87,10 +68,31 @@ int					print_oct(va_list args, t_obj *obj)
 			return (0);
 		}
 	}
+	return (1);
+}
+
+int							print_oct(va_list args, t_obj *obj)
+{
+	unsigned long long	n;
+	char				*nbr;
+
+	obj->res = (char *)ft_calloc(1, 1);
+	n = get_num_o(args, obj);
+	if (!(nbr = ft_ulltoa(n)))
+		return (0);
+	if (n != 0)
+	{
+		if (!(nbr = ft_convert_base(nbr, "0123456789", "01234567")))
+		{
+			free(nbr);
+			return (0);
+		}
+	}
+	obj->len = ft_strlen(nbr);
+	if (!(process_precision_o(n, nbr, obj)))
+		return (0);
 	free(nbr);
-	if (n == 0)
-		obj->prefix = 0;
-	if (!(process_width_o(obj)))
+	if (!(process_width_o(n, obj)))
 		return (0);
 	ft_putstr_fd(obj->res, 1);
 	obj->return_value += ft_strlen(obj->res);

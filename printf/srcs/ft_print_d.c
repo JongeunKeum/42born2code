@@ -6,35 +6,13 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 15:37:36 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/11/29 17:01:20 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
-int			fill_precision_nbr(t_obj *obj)
-{
-	int		i;
-	int		len;
-	char	*prec;
-
-	len = obj->precision - obj->len + obj->neg;
-	if (!(prec = (char *)ft_calloc(len + 1, 1)))
-		return (0);
-	i = 0;
-	while (i < len)
-		prec[i++] = '0';
-	if (!(obj->res = ft_strjoin_free(obj->res, prec, 1)))
-	{
-		free(prec);
-		return (0);
-	}
-	free(prec);
-	return (1);
-}
-
-long long	get_num_d(va_list args, t_obj *obj)
+static long long	get_num_d(va_list args, t_obj *obj)
 {
 	long long	n;
 
@@ -57,33 +35,8 @@ long long	get_num_d(va_list args, t_obj *obj)
 	return (n);
 }
 
-int			print_int(va_list args, t_obj *obj)
+static int			process_width_d(t_obj *obj)
 {
-	long long	n;
-	char		*nbr;
-
-	obj->res = (char *)ft_calloc(1, 1);
-	n = get_num_d(args, obj);
-	if (!(nbr = ft_lltoa(n)))
-		return (0);
-	obj->len = ft_strlen(nbr);
-	if (obj->precision > obj->len - obj->neg)
-	{
-		if (!(fill_precision_nbr(obj)))
-		{
-			free(nbr);
-			return (0);
-		}
-	}
-	if (n != 0 || (!obj->dot || obj->precision))
-	{
-		if (!(obj->res = ft_strjoin_free(obj->res, nbr + obj->neg, 1)))
-		{
-			free(nbr);
-			return (0);
-		}
-	}
-	free(nbr);
 	if (obj->width > (int)ft_strlen(obj->res))
 	{
 		if (!(fill_width(obj)))
@@ -100,6 +53,45 @@ int			print_int(va_list args, t_obj *obj)
 		if (!obj->res)
 			return (0);
 	}
+	return (1);
+}
+
+static int			process_precision_d(long long n, char *nbr, t_obj *obj)
+{
+	if (obj->precision > obj->len - obj->neg)
+	{
+		if (!(fill_precision_nbr(obj)))
+		{
+			free(nbr);
+			return (0);
+		}
+	}
+	if (n != 0 || (!obj->dot || obj->precision))
+	{
+		if (!(obj->res = ft_strjoin_free(obj->res, nbr + obj->neg, 1)))
+		{
+			free(nbr);
+			return (0);
+		}
+	}
+	return (1);
+}
+
+int					print_int(va_list args, t_obj *obj)
+{
+	long long	n;
+	char		*nbr;
+
+	obj->res = (char *)ft_calloc(1, 1);
+	n = get_num_d(args, obj);
+	if (!(nbr = ft_lltoa(n)))
+		return (0);
+	obj->len = ft_strlen(nbr);
+	if (!(process_precision_d(n, nbr, obj)))
+		return (0);
+	free(nbr);
+	if (!(process_width_d(obj)))
+		return (0);
 	ft_putstr_fd(obj->res, 1);
 	obj->return_value += ft_strlen(obj->res);
 	free(obj->res);
