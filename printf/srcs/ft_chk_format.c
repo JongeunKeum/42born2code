@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:59:25 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 17:08:23 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/02 18:46:50 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ static int	check_type(va_list args, t_obj *obj)
 		return (print_percent(obj));
 	else if (obj->type == 'n')
 		return (print_num_ch(args, obj));
+	else if (obj->type == 'f')
+		return (print_double(args, obj));
 	else
 		return (0);
 }
@@ -92,7 +94,7 @@ static int	check_type(va_list args, t_obj *obj)
 int			check_format(const char *str, va_list args, t_obj *obj)
 {
 	obj->idx++;
-	while (!ft_strchr("cdisupxXon%", str[obj->idx]))
+	while (!ft_strchr("cdisupxXonf%", str[obj->idx]))
 	{
 		while (ft_strchr("-0 #+", str[obj->idx]))
 		{
