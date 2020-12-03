@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/02 16:47:09 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/03 19:41:41 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@
 typedef struct		s_fobj
 {
 	char	deci_bin[1074];
+	char	deci_five[1074];
+	char	deci_res[1074];
 	int		expnt;
+	int		rounding;
 }					t_fobj;
 
 typedef struct		s_obj
