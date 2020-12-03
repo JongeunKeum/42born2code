@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:25:31 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/02 19:26:40 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/03 19:41:57 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ static void		set_objs(t_obj *obj)
 	obj->neg = 0;
 	obj->dot = 0;
 	obj->length = 0;
-	ft_memset(obj->fobj.deci_bin, '0', 1074);
-	obj->fobj.deci_bin[1073] = 0;
+	ft_bzero(obj->fobj.deci_bin, 1074);
+	ft_bzero(obj->fobj.deci_five, 1074);
+	ft_bzero(obj->fobj.deci_res, 1074);
+	obj->fobj.expnt = 0;
+	obj->fobj.rounding = 0;
 }
 
 static int		is_percent(const char *str, va_list args, t_obj *obj)
