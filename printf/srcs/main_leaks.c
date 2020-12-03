@@ -2,7 +2,7 @@
 
 int	main(void)
 {
-	ft_printf("%c%c", 'a', 'b');
+	ft_printf("%d", 123);
 	while (1)
 		;
 	return (0);
