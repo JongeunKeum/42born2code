@@ -11,8 +11,8 @@ int	main(void)
 	printf("02. hell%5c\n", 'o');
 	ft_printf("02. hell%5c\n\n", 'o');
 
-	printf("%d\n", printf("03. hell%5c|\n", '\0'));
-	printf("%d\n", ft_printf("03. hell%5c|\n\n", '\0'));
+	printf("%d\n", printf("03. hell%c|\n", '\0'));
+	printf("%d\n", ft_printf("03. hell%c|\n\n", '\0'));
 
 	printf("04. hell%-5c|\n", '\0');
 	ft_printf("04. hell%-5c|\n\n", '\0');
