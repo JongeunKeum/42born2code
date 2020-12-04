@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/03 19:41:41 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/04 23:19:45 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,13 @@ typedef struct		s_fobj
 	char	deci_bin[1074];
 	char	deci_five[1074];
 	char	deci_res[1074];
+	char	inte_bin[1024];
+	char	inte_two[309];
+	char	inte_res[309];
 	int		expnt;
 	int		rounding;
+	int		two;
+	int		res;
 }					t_fobj;
 
 typedef struct		s_obj
@@ -81,5 +86,12 @@ char				*ft_ulltoa(unsigned long long n);
 char				*ft_ptoa(long long n);
 char				*ft_convert_base(char *nbr, char *base_from, char *base_to);
 char				*ft_strjoin_free(char *s1, char *s2, int to_free);
+void				process_deci_bin(t_obj *obj, t_fpoint *fp);
+void				process_deci_five(t_obj *obj, int idx);
+void				process_deci_res(t_obj *obj, int idx);
+void				process_inte_bin(t_obj *obj, t_fpoint *fp);
+void				process_inte_two(t_obj *obj);
+void				process_inte_res(t_obj *obj);
+void				ft_strrev_f(t_obj *obj);
 
 #endif
