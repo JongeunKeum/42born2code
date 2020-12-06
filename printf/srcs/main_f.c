@@ -16,15 +16,14 @@ int	main(void)
 	ft_printf("03. hello %f world\n", 0.456);
 	printf("\n");
 */
-	ft_printf("04. hello %f world\n", 123.3125);
+//	ft_printf("04. hello %f world\n", 123456789000111222333.3125);
+//	ft_printf("04. hello %f world\n", -123.3125);
 //	ft_printf("04. hello %f world\n", __DBL_MAX__);
 //	ft_printf("04. hello %f world\n", 0.3125);
 	printf("\n");
 	
-//	ft_printf("03. hello %f world\n", __DBL_MIN__);
+	ft_printf("05. hello %f world\n", __DBL_MIN__);
 //	printf("\n");
-
-
 
 	return (0);
 }
