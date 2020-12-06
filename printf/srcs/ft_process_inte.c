@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 19:57:26 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/04 23:19:44 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/05 20:50:24 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ void	process_inte_res(t_obj *obj)
 	while (++i <= j)
 	{
 		obj->fobj.inte_res[i] += (obj->fobj.inte_two[i] + obj->fobj.rounding);
-		if (obj->fobj.inte_res[i] >= 10 && i + 1 > j)
+		if (obj->fobj.inte_res[i] >= 10)
 		{
-			obj->fobj.rounding = 1;
-//			obj->fobj.inte_res[i + 1] = obj->fobj.inte_res[i] / 10;
+			obj->fobj.rounding = obj->fobj.inte_res[i] / 10;
 			obj->fobj.inte_res[i] %= 10;
-			j++;
+			if (i + 1 > j)
+				j++;
 		}
 		else
 			obj->fobj.rounding = 0;
