@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process_inte.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hyunlee <hyunlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 19:57:26 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/05 20:50:24 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/06 18:15:16 by hyunlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	process_inte_bin(t_obj *obj, t_fpoint *fp)
 	int				start_idx;
 	int				range;
 	unsigned long	temp;
-	
+
 	if (obj->fobj.expnt >= 0)
 	{
 		range = (obj->fobj.expnt > 52) ? 52 : obj->fobj.expnt;
@@ -26,7 +26,7 @@ void	process_inte_bin(t_obj *obj, t_fpoint *fp)
 		start_idx = 1024 - obj->fobj.expnt - 1;
 		obj->fobj.inte_bin[start_idx] = 1;
 		i = 0;
-		while (start_idx < 1024 && range >= i) 
+		while (start_idx < 1024 && range >= i)
 		{
 			if ((temp >> (range - i++)) & 1)
 				obj->fobj.inte_bin[start_idx] = 1;
