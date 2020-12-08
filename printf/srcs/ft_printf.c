@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:25:31 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/04 22:32:14 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 01:50:19 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void		set_objs(t_obj *obj)
 	obj->fobj.rounding = 0;
 	obj->fobj.two = 0;
 	obj->fobj.res = 0;
+	obj->fobj.inte_len = 0;
 }
 
 static int		is_percent(const char *str, va_list args, t_obj *obj)
