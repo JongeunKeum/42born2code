@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/04 23:19:45 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 01:50:36 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_fobj
 	int		rounding;
 	int		two;
 	int		res;
+	int		inte_len;
 }					t_fobj;
 
 typedef struct		s_obj
