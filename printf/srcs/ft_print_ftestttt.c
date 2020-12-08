@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_f.c                                       :+:      :+:    :+:   */
+/*   ft_print_ftestttt.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunlee <hyunlee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:30 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/06 18:17:13 by hyunlee          ###   ########.fr       */
+/*   Updated: 2020/12/09 02:57:34 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,87 @@ static t_fpoint	*init_fobjs(void)
 	return (fp);
 }
 
+int		chk_all_zero(t_obj *obj)
+{
+	int	i;
+
+	i = obj->precision;
+	while (++i < 1074)
+	{
+		if (obj->fobj.deci_res[i])
+			break ;
+	}
+	if (i == 1074)
+		return (1);
+	return (0);
+}
+
+void	arr_int_to_char(t_obj *obj)
+{
+	int	i;
+
+	i = obj->precision;
+	while (--i >= 0)
+		obj->fobj.deci_res[i] += '0';
+	obj->fobj.deci_res[obj->precision] = 0;
+	if (obj->fobj.inte_len == 0)
+		obj->fobj.inte_len++;
+	i = 308 - obj->fobj.inte_len;
+	while (++i < 309)
+		obj->fobj.inte_res[i] += '0';
+}
+
+void	deci_res_precision(t_obj *obj, int idx)
+{
+	int	inte_idx;
+
+	inte_idx = 308;
+	if (idx >= 0)
+	{
+		while (idx >= 0 && obj->fobj.deci_res[idx] >= 10)
+		{
+			obj->fobj.deci_res[idx--] %= 10;
+			if (idx >= 0)
+				obj->fobj.deci_res[idx]++;
+			else
+				obj->fobj.inte_res[inte_idx]++;
+		}
+	}
+	if (idx < 0)
+	{
+		while (obj->fobj.inte_res[inte_idx] >= 10)
+		{
+			obj->fobj.inte_res[inte_idx--] %= 10;
+			obj->fobj.inte_res[inte_idx]++;
+		}
+	}
+	arr_int_to_char(obj);
+}
+
+void	cut_precision(t_obj *obj)
+{
+	int	idx;
+
+	if (!obj->dot)
+		obj->precision = 6;
+	idx = obj->precision - 1;
+	if (obj->fobj.deci_res[obj->precision] == 5 && chk_all_zero(obj))
+	{
+		if (obj->precision > 0 && obj->fobj.deci_res[obj->precision - 1] % 2 == 1)
+			obj->fobj.deci_res[idx]++;
+		else if (!obj->precision && obj->fobj.inte_res[308] % 2 == 1)
+			obj->fobj.inte_res[308]++;
+	}
+	else if (obj->fobj.deci_res[obj->precision] >= 5)
+	{
+		if (obj->precision > 0)
+			obj->fobj.deci_res[idx]++;
+		else
+			obj->fobj.inte_res[308]++;
+	}
+	deci_res_precision(obj, idx);
+}
+
 int	print_double(va_list args, t_obj *obj)
 {
 	t_fpoint		*fp;
@@ -36,7 +117,7 @@ int	print_double(va_list args, t_obj *obj)
 		return (0);
 	fp->realnum = va_arg(args, double);
 	obj->fobj.expnt = fp->bitfield.exponent - BIAS;
-
+	
 	// 소수부분
 	process_deci_bin(obj, fp);
 /*	for (int j = 0; j < 1074; j++)
@@ -58,8 +139,8 @@ int	print_double(va_list args, t_obj *obj)
 			ft_putnbr_fd(obj->fobj.deci_five[j], 1);
 		write(1, "\n", 1);
 */	}
-	for (int i = 0; i < 1074; i++)
-		ft_putnbr_fd(obj->fobj.deci_res[i], 1);
+//	for (int i = 0; i < 1074; i++)
+//		ft_putnbr_fd(obj->fobj.deci_res[i], 1);
 
 	// 정수부분
 	obj->fobj.rounding = 0;
@@ -89,5 +170,12 @@ int	print_double(va_list args, t_obj *obj)
 	ft_strrev_f(obj);
 //	for (int k = 0; k < 309; k++)
 //		ft_putnbr_fd(obj->fobj.inte_res[k], 1);
+
+	cut_precision(obj);
+	for (int k = 308 - obj->fobj.inte_len; k < 309; k++)
+		ft_putchar_fd(obj->fobj.inte_res[k], 1);
+	write(1, ".", 1);
+	for (int l = 0; obj->fobj.deci_res[l]; l++)
+		ft_putchar_fd(obj->fobj.deci_res[l], 1);
 	return (1);
 }
