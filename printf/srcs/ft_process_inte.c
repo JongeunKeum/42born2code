@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process_inte.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunlee <hyunlee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 19:57:26 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/06 18:15:16 by hyunlee          ###   ########.fr       */
+/*   Updated: 2020/12/09 02:03:44 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	process_inte_bin(t_obj *obj, t_fpoint *fp)
 
 	if (obj->fobj.expnt >= 0)
 	{
-		range = (obj->fobj.expnt > 52) ? 52 : obj->fobj.expnt;
+		if (obj->fobj.expnt > 52)
+			range = 52;
+		else
+			range = obj->fobj.expnt;
 		temp = fp->bitfield.mantissa >> (52 - range);
 		start_idx = 1024 - obj->fobj.expnt - 1;
 		obj->fobj.inte_bin[start_idx] = 1;
@@ -79,6 +82,7 @@ void	process_inte_res(t_obj *obj)
 		else
 			obj->fobj.rounding = 0;
 	}
+	obj->fobj.inte_len = j + 1;
 }
 
 void	ft_strrev_f(t_obj *obj)
