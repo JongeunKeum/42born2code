@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_f.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunlee <hyunlee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:30 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/06 18:49:13 by hyunlee          ###   ########.fr       */
+/*   Updated: 2020/12/08 16:21:15 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int		print_double(va_list args, t_obj *obj)
 		return (0);
 	fp->realnum = va_arg(args, double);
 	fill_deci_inte(obj, fp);
+
 	return (1);
 }
