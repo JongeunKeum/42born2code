@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 16:15:46 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 18:38:40 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 23:29:48 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void		cut_precision_f(t_obj *obj)
 	idx = obj->precision - 1;
 	if (obj->fobj.deci_res[obj->precision] == 5 && chk_all_zero(obj))
 	{
-		if (obj->precision > 0 && obj->fobj.deci_res[obj->precision - 1] % 2 == 1)
+		if (obj->precision > 0 &&
+				obj->fobj.deci_res[obj->precision - 1] % 2 == 1)
 			obj->fobj.deci_res[idx]++;
 		else if (!obj->precision && obj->fobj.inte_res[308] % 2 == 1)
 			obj->fobj.inte_res[308]++;
