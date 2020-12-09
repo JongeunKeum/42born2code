@@ -40,11 +40,11 @@ int	main(void)
 	printf("09. hello %- 10f world\n", 0.125);
 	ft_printf("09. hello %- 10f world\n", 0.125);
 	printf("\n");
-*/
+
 	printf("10. hello %f world\n", __DBL_MIN__);
 	ft_printf("10. hello %f world\n", __DBL_MIN__);
 	printf("\n");
-/*
+
 	printf("11. hello %.1f world\n", 0.987);
 	ft_printf("11. hello %.1f world\n", 0.987);
 	printf("\n");
@@ -121,5 +121,11 @@ int	main(void)
 	ft_printf("29. hello %f world\n", 23.375094499);
 	printf("\n");
 */
+	printf("30. hello %f world\n", 0.0);
+	ft_printf("30. hello %f world\n", 0.0);
+	printf("\n");
+
+	printf("31. hello %5.0f world\n", -0.0);
+	ft_printf("31. hello %5.0f world\n", -0.0);
 	return (0);
 }
