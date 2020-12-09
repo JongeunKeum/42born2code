@@ -127,5 +127,11 @@ int	main(void)
 
 	printf("31. hello %5.0f world\n", -0.0);
 	ft_printf("31. hello %5.0f world\n", -0.0);
+	printf("\n");
+
+	printf("32. hello %-5.0f world\n", -0.0);
+	ft_printf("32. hello %-5.0f world\n", -0.0);
+	printf("\n");
+
 	return (0);
 }
