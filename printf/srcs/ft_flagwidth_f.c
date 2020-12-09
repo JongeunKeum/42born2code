@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 17:46:10 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 21:51:58 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 22:16:21 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void is_zeroflag_f(t_obj *obj, int range)
 	{
         if (obj->neg)
 	    	write(1, "-", 1);
+		if (obj->sign && !obj->neg)
+			write(1, "+", 1);
         while (i++ < range)
 			write(1, "0", 1);
 	}
@@ -40,18 +42,27 @@ static void is_zeroflag_f(t_obj *obj, int range)
 			write(1, " ", 1);
         if (obj->neg)
 		    write(1, "-", 1);
+		if (obj->sign && !obj->neg)
+			write(1, "+", 1);
 	}
 }
 
 static void	chk_leftflag_f(t_obj *obj, int total_len)
 {
 	int	range;
+	int	i;
 
+	i = 0;
 	range = obj->width - total_len;
 	if (obj->left)
 	{
+		if (obj->neg)
+			write(1, "-", 1);
+		if (obj->sign && !obj->neg)
+			write(1, "+", 1);
 		print_out_result(obj);
-		is_zeroflag_f(obj, range);
+		while (i++ < range)
+			write(1, " ", 1);
 	}
 	else
 	{
@@ -70,11 +81,8 @@ void		flag_n_width_f(t_obj *obj)
 		deci_len++;
 	total_len = obj->fobj.inte_len + deci_len + obj->neg;
 	if (obj->sign && !obj->neg)
-	{
-		write(1, "+", 1);
 		total_len++;
-    }
-	if (obj->space && !obj->neg)
+	if (obj->space && !obj->sign && !obj->neg)
 	{
 		write(1, " ", 1);
 		total_len++;
