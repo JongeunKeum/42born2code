@@ -11,7 +11,9 @@ SRCS = ./srcs/ft_printf.c  ./srcs/ft_printf_utils.c\
 	   ./srcs/ft_print_p.c ./srcs/ft_print_n.c \
 	   ./srcs/ft_convert_base.c ./srcs/ft_ptoa.c \
 	   ./srcs/ft_fill_width.c ./srcs/ft_ulltoa.c \
-	   ./srcs/ft_strjoin_free.c
+	   ./srcs/ft_strjoin_free.c ./srcs/ft_print_f.c \
+	   ./srcs/ft_process_deci.c ./srcs/ft_process_inte.c \
+	   ./srcs/ft_precision_f.c ./srcs/ft_flagwidth_f.c \
 
 OBJS = $(SRCS:.c=.o)
 LIB = libft.a
