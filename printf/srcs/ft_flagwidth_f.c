@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 17:46:10 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 17:46:59 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 18:05:29 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void print_out_result(t_obj *obj)
 {
-	for (int k = 308 - obj->fobj.inte_len; k < 309; k++)
+	for (int k = 309 - obj->fobj.inte_len; k < 309; k++)
 		ft_putchar_fd(obj->fobj.inte_res[k], 1);
 	if (obj->precision || obj->prefix)
 		write(1, ".", 1);
