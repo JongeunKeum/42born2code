@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:30 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 23:31:42 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 23:51:13 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,31 @@ static t_fpoint	*init_fobjs(void)
 	return (fp);
 }
 
-void			fill_deci_inte(t_obj *obj, t_fpoint *fp)
+void			print_out_result(t_obj *obj)
 {
 	int	i;
-	int	j;
+
+	i = 309 - obj->fobj.inte_len;
+	while (i < 309)
+	{
+		ft_putchar_fd(obj->fobj.inte_res[i], 1);
+		obj->return_value++;
+		i++;
+	}
+	if (obj->precision || obj->prefix)
+	{
+		write(1, ".", 1);
+		obj->return_value++;
+	}
+	i = -1;
+	while (obj->fobj.deci_res[++i])
+		ft_putchar_fd(obj->fobj.deci_res[i], 1);
+	obj->return_value += i;
+}
+
+static void		fill_deci(t_obj *obj, t_fpoint *fp)
+{
+	int	i;
 
 	obj->fobj.expnt = fp->bitfield.exponent - BIAS;
 	process_deci_bin(obj, fp);
@@ -44,6 +65,13 @@ void			fill_deci_inte(t_obj *obj, t_fpoint *fp)
 		ft_bzero(obj->fobj.deci_res, 1074);
 	if (fp->realnum == __DBL_MIN__)
 		obj->fobj.deci_res[0] = 0;
+}
+
+static void		fill_inte(t_obj *obj, t_fpoint *fp)
+{
+	int	i;
+	int	j;
+
 	obj->fobj.rounding = 0;
 	process_inte_bin(obj, fp);
 	obj->fobj.inte_two[0] = 1;
@@ -66,7 +94,8 @@ int				print_double(va_list args, t_obj *obj)
 		return (0);
 	fp->realnum = va_arg(args, double);
 	obj->neg = fp->bitfield.sign;
-	fill_deci_inte(obj, fp);
+	fill_deci(obj, fp);
+	fill_inte(obj, fp);
 	cut_precision_f(obj);
 	flag_n_width_f(obj);
 	return (1);
