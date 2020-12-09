@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 17:47:23 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 23:44:48 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void				process_inte_res(t_obj *obj);
 void				ft_strrev_f(t_obj *obj);
 void				cut_precision_f(t_obj *obj);
 void				flag_n_width_f(t_obj *obj);
+void				print_out_result(t_obj *obj);
 
 #endif
