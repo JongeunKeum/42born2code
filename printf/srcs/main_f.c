@@ -3,8 +3,8 @@
 
 int	main(void)
 {
-/*	printf("01. hello %f world\n", 2.625);
-	ft_printf("01. hello %f world\n", 2.625);
+	printf("return: %d\n", printf("01. hello %f world\n", 2.625));
+	printf("return: %d\n", ft_printf("01. hello %f world\n", 2.625));
 	printf("\n");
 
 	printf("02. hello %f world\n", 0.625);
@@ -29,8 +29,8 @@ int	main(void)
 	ft_printf("06. hello %f world\n", __DBL_MAX__);
 	printf("\n");
 
-	printf("07. hello %.0f world\n", 0.125);
-	ft_printf("07. hello %.0f world\n", 0.125);
+	printf("return: %d\n", printf("07. hello %.0f world\n", 0.125));
+	printf("return: %d\n", ft_printf("07. hello %.0f world\n", 0.125));
 	printf("\n");
 
 	printf("08. hello %.3f world\n", 0.125);
@@ -97,8 +97,8 @@ int	main(void)
 	ft_printf("23. hello %+ .1f world\n", 12.345);
 	printf("\n");
 
-	printf("24. hello %010.1f world\n", 12.345);
-	ft_printf("24. hello %010.1f world\n", 12.345);
+	printf("return: %d\n", printf("24. hello %010.1f world\n", 12.345));
+	printf("return: %d\n", ft_printf("24. hello %010.1f world\n", 12.345));
 	printf("\n");
 
 //	printf("25. hello %-010.1f world\n", 12.345); 12.3      (0플래그 무시)
@@ -112,15 +112,15 @@ int	main(void)
 	printf("27. hello % 010.1f world\n", -12.345);
 	ft_printf("27. hello % 010.1f world\n", -12.345);
 	printf("\n");
-*/
-/*	printf("28. hello %.6f world\n", 0.0894255);
+
+	printf("28. hello %.6f world\n", 0.0894255);
 	ft_printf("28. hello %.6f world\n", 0.0894255);
 	printf("\n");
 
 	printf("29, hello %f world\n", 23.375094499);
 	ft_printf("29. hello %f world\n", 23.375094499);
 	printf("\n");
-*/
+
 	printf("30. hello %f world\n", 0.0);
 	ft_printf("30. hello %f world\n", 0.0);
 	printf("\n");
@@ -131,6 +131,10 @@ int	main(void)
 
 	printf("32. hello %-5.0f world\n", -0.0);
 	ft_printf("32. hello %-5.0f world\n", -0.0);
+	printf("\n");
+
+	printf("return: %d\n", printf("% 010.1f\n", -12.345));
+	printf("return: %d\n", ft_printf("% 010.1f\n", -12.345));
 	printf("\n");
 
 	return (0);
