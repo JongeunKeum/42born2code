@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:30 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/08 16:21:15 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 17:48:45 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ void	fill_deci_inte(t_obj *obj, t_fpoint *fp)
 int		print_double(va_list args, t_obj *obj)
 {
 	t_fpoint		*fp;
-	int				i;
-	int				j;
 
 	if (!(fp = init_fobjs()))
 		return (0);
 	fp->realnum = va_arg(args, double);
+	obj->neg = fp->bitfield.sign;
 	fill_deci_inte(obj, fp);
-
+	cut_precision_f(obj);
+	flag_n_width_f(obj);
 	return (1);
 }
