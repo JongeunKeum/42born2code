@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:30 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 21:45:58 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 23:31:42 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_fpoint	*init_fobjs(void)
 	return (fp);
 }
 
-void	fill_deci_inte(t_obj *obj, t_fpoint *fp)
+void			fill_deci_inte(t_obj *obj, t_fpoint *fp)
 {
 	int	i;
 	int	j;
@@ -58,7 +58,7 @@ void	fill_deci_inte(t_obj *obj, t_fpoint *fp)
 	ft_strrev_f(obj);
 }
 
-int		print_double(va_list args, t_obj *obj)
+int				print_double(va_list args, t_obj *obj)
 {
 	t_fpoint		*fp;
 
