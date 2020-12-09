@@ -46,7 +46,7 @@ int	main(void)
 	printf("\n");
 
 	printf("11. hello %.1f world\n", 0.987);
-	ft_printf("11, hello %.1f world\n", 0.987);
+	ft_printf("11. hello %.1f world\n", 0.987);
 	printf("\n");
 
 	printf("12. hello %#.0f world\n", 0.273);
@@ -57,5 +57,61 @@ int	main(void)
 	ft_printf("13. hello %#.0f world\n", 0.0);
 	printf("\n");
 */
+	printf("14. hello %.2f world\n", 999.9999);
+	ft_printf("14. hello %.2f world\n", 999.9999);
+	printf("\n");
+
+	printf("15. hello %.2f world\n", 599.9999);
+	ft_printf("15. hello %.2f world\n", 599.9999);
+	printf("\n");
+
+	printf("16. hello %f world\n", 52.0);
+	ft_printf("16. hello %f world\n", 52.0);
+	printf("\n");
+
+	printf("17. hello % .1f world\n", 12.345);
+	ft_printf("17. hello % .1f world\n", 12.345);
+	printf("\n");
+
+	printf("18. hello %-10.1f world\n", 12.345);
+	ft_printf("18. hello %-10.1f world\n", 12.345);
+	printf("\n");
+
+	printf("19. hello %- 10.1f world\n", 12.345);
+	ft_printf("19. hello %- 10.1f world\n", 12.345);
+	printf("\n");
+
+	printf("20. hello %10.0f world\n", 0.123);
+	ft_printf("20. hello %10.0f world\n", 0.123);
+	printf("\n");
+
+	printf("21. hello %.1f world\n", -12.345);
+	ft_printf("21. hello %.1f world\n", -12.345);
+	printf("\n");
+
+	printf("22. hello %+.1f world\n", 12.345);
+	ft_printf("22. hello %+.1f world\n", 12.345);
+	printf("\n");
+
+//	printf("23. hello %+ .1f world\n", 12.345); +12.345 (공백 무시)
+	ft_printf("23. hello %+ .1f world\n", 12.345);
+	printf("\n");
+
+	printf("24. hello %010.1f world\n", 12.345);
+	ft_printf("24. hello %010.1f world\n", 12.345);
+	printf("\n");
+
+//	printf("25. hello %-010.1f world\n", 12.345); 12.3      (0플래그 무시)
+	ft_printf("25. hello %-010.1f world\n", 12.345);
+	printf("\n");
+
+	printf("26. hello % 010.1f world\n", 12.345);
+	ft_printf("26. hello % 010.1f world\n", 12.345);
+	printf("\n");
+
+	printf("27. hello % 010.1f world\n", -12.345);
+	ft_printf("27. hello % 010.1f world\n", -12.345);
+	printf("\n");
+
 	return (0);
 }
