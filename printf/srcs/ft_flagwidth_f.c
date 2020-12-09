@@ -6,35 +6,35 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 17:46:10 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 22:49:33 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 23:34:54 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static void print_out_result(t_obj *obj)
+static void	print_out_result(t_obj *obj)
 {
 	int	i;
 
 	i = 309 - obj->fobj.inte_len;
 	while (i < 309)
 	{
-        ft_putchar_fd(obj->fobj.inte_res[i], 1);
-        obj->return_value++;
+		ft_putchar_fd(obj->fobj.inte_res[i], 1);
+		obj->return_value++;
 		i++;
-    }
+	}
 	if (obj->precision || obj->prefix)
 	{
-        write(1, ".", 1);
-        obj->return_value++;
-    }
+		write(1, ".", 1);
+		obj->return_value++;
+	}
 	i = -1;
 	while (obj->fobj.deci_res[++i])
-        ft_putchar_fd(obj->fobj.deci_res[i], 1);
+		ft_putchar_fd(obj->fobj.deci_res[i], 1);
 	obj->return_value += i;
 }
 
-static void is_zeroflag_f(t_obj *obj, int range)
+static void	is_zeroflag_f(t_obj *obj, int range)
 {
 	int	i;
 
@@ -58,9 +58,9 @@ static void is_zeroflag_f(t_obj *obj, int range)
 	else
 	{
 		while (i++ < range)
-            write(1, " ", 1);
-        obj->return_value += (i - 1);
-        if (obj->neg)
+			write(1, " ", 1);
+		obj->return_value += (i - 1);
+		if (obj->neg)
 		{
 			write(1, "-", 1);
 			obj->return_value++;
