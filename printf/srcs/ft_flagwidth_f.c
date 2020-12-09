@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 17:46:10 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 22:16:21 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 22:49:33 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,24 @@
 
 static void print_out_result(t_obj *obj)
 {
-	for (int k = 309 - obj->fobj.inte_len; k < 309; k++)
-		ft_putchar_fd(obj->fobj.inte_res[k], 1);
+	int	i;
+
+	i = 309 - obj->fobj.inte_len;
+	while (i < 309)
+	{
+        ft_putchar_fd(obj->fobj.inte_res[i], 1);
+        obj->return_value++;
+		i++;
+    }
 	if (obj->precision || obj->prefix)
-		write(1, ".", 1);
-	for (int l = 0; obj->fobj.deci_res[l]; l++)
-		ft_putchar_fd(obj->fobj.deci_res[l], 1);
+	{
+        write(1, ".", 1);
+        obj->return_value++;
+    }
+	i = -1;
+	while (obj->fobj.deci_res[++i])
+        ft_putchar_fd(obj->fobj.deci_res[i], 1);
+	obj->return_value += i;
 }
 
 static void is_zeroflag_f(t_obj *obj, int range)
@@ -29,21 +41,35 @@ static void is_zeroflag_f(t_obj *obj, int range)
 	i = 0;
 	if (obj->zero)
 	{
-        if (obj->neg)
-	    	write(1, "-", 1);
+		if (obj->neg)
+		{
+			write(1, "-", 1);
+			obj->return_value++;
+		}
 		if (obj->sign && !obj->neg)
+		{
 			write(1, "+", 1);
-        while (i++ < range)
+			obj->return_value++;
+		}
+		while (i++ < range)
 			write(1, "0", 1);
+		obj->return_value += (i - 1);
 	}
 	else
 	{
 		while (i++ < range)
-			write(1, " ", 1);
+            write(1, " ", 1);
+        obj->return_value += (i - 1);
         if (obj->neg)
-		    write(1, "-", 1);
+		{
+			write(1, "-", 1);
+			obj->return_value++;
+		}
 		if (obj->sign && !obj->neg)
+		{
 			write(1, "+", 1);
+			obj->return_value++;
+		}
 	}
 }
 
@@ -57,12 +83,19 @@ static void	chk_leftflag_f(t_obj *obj, int total_len)
 	if (obj->left)
 	{
 		if (obj->neg)
+		{
 			write(1, "-", 1);
+			obj->return_value++;
+		}
 		if (obj->sign && !obj->neg)
+		{
 			write(1, "+", 1);
+			obj->return_value++;
+		}
 		print_out_result(obj);
 		while (i++ < range)
 			write(1, " ", 1);
+		obj->return_value += (i - 1);
 	}
 	else
 	{
@@ -86,6 +119,7 @@ void		flag_n_width_f(t_obj *obj)
 	{
 		write(1, " ", 1);
 		total_len++;
+		obj->return_value++;
 	}
 	chk_leftflag_f(obj, total_len);
 }
