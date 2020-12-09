@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:30 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 21:25:29 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 21:45:58 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	fill_deci_inte(t_obj *obj, t_fpoint *fp)
 			process_deci_res(obj, i);
 		process_deci_five(obj, ++i);
 	}
+	if (fp->bitfield.mantissa == 0)
+		ft_bzero(obj->fobj.deci_res, 1074);
 	if (fp->realnum == __DBL_MIN__)
 		obj->fobj.deci_res[0] = 0;
 	obj->fobj.rounding = 0;
