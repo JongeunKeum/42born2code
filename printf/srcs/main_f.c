@@ -3,7 +3,7 @@
 
 int	main(void)
 {
-	printf("01. hello %f world\n", 2.625);
+/*	printf("01. hello %f world\n", 2.625);
 	ft_printf("01. hello %f world\n", 2.625);
 	printf("\n");
 
@@ -40,11 +40,11 @@ int	main(void)
 	printf("09. hello %- 10f world\n", 0.125);
 	ft_printf("09. hello %- 10f world\n", 0.125);
 	printf("\n");
-
+*/
 	printf("10. hello %f world\n", __DBL_MIN__);
 	ft_printf("10. hello %f world\n", __DBL_MIN__);
 	printf("\n");
-
+/*
 	printf("11. hello %.1f world\n", 0.987);
 	ft_printf("11. hello %.1f world\n", 0.987);
 	printf("\n");
@@ -53,10 +53,10 @@ int	main(void)
 	ft_printf("12. hello %#.0f world\n", 0.273);
 	printf("\n");
 
-/*	printf("13. hello %#.0f world\n", 0.0);
+	printf("13. hello %#.0f world\n", 0.0);
 	ft_printf("13. hello %#.0f world\n", 0.0);
 	printf("\n");
-*/
+
 	printf("14. hello %.2f world\n", 999.9999);
 	ft_printf("14. hello %.2f world\n", 999.9999);
 	printf("\n");
@@ -112,6 +112,14 @@ int	main(void)
 	printf("27. hello % 010.1f world\n", -12.345);
 	ft_printf("27. hello % 010.1f world\n", -12.345);
 	printf("\n");
+*/
+/*	printf("28. hello %.6f world\n", 0.0894255);
+	ft_printf("28. hello %.6f world\n", 0.0894255);
+	printf("\n");
 
+	printf("29, hello %f world\n", 23.375094499);
+	ft_printf("29. hello %f world\n", 23.375094499);
+	printf("\n");
+*/
 	return (0);
 }
