@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 17:46:10 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 18:05:29 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 21:51:58 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,17 @@ static void is_zeroflag_f(t_obj *obj, int range)
 	i = 0;
 	if (obj->zero)
 	{
-		while (i++ < range)
+        if (obj->neg)
+	    	write(1, "-", 1);
+        while (i++ < range)
 			write(1, "0", 1);
 	}
 	else
 	{
 		while (i++ < range)
 			write(1, " ", 1);
+        if (obj->neg)
+		    write(1, "-", 1);
 	}
 }
 
@@ -69,9 +73,7 @@ void		flag_n_width_f(t_obj *obj)
 	{
 		write(1, "+", 1);
 		total_len++;
-	}
-	if (obj->neg)
-		write(1, "-", 1);
+    }
 	if (obj->space && !obj->neg)
 	{
 		write(1, " ", 1);
