@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:30 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 17:48:45 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/09 21:25:29 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ void	fill_deci_inte(t_obj *obj, t_fpoint *fp)
 	process_deci_bin(obj, fp);
 	i = 0;
 	obj->fobj.deci_five[0] = 5;
-	while (i < 51 - obj->fobj.expnt)
+	while (i < 52 - obj->fobj.expnt)
 	{
 		if (obj->fobj.deci_bin[i] == 1)
 			process_deci_res(obj, i);
 		process_deci_five(obj, ++i);
 	}
+	if (fp->realnum == __DBL_MIN__)
+		obj->fobj.deci_res[0] = 0;
 	obj->fobj.rounding = 0;
 	process_inte_bin(obj, fp);
 	obj->fobj.inte_two[0] = 1;
