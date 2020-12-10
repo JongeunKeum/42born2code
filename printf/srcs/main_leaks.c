@@ -2,8 +2,7 @@
 
 int	main(void)
 {
-	ft_printf("%d", 123);
-	while (1)
-		;
+	ft_printf("hello %10.3lll world\n", 123);
+	
 	return (0);
 }
