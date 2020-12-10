@@ -137,12 +137,16 @@ int	main(void)
 	printf("return: %d\n", ft_printf("% 010.1f\n", -12.345));
 	printf("\n");
 */
-	printf("INF: hello %010f world\n", 1.0/0.0);
-	ft_printf("INF: hello %010f world\n", 1.0/0.0);
+	printf("INF: hello %+10f world\n", 1.0/0.0);
+	ft_printf("INF: hello %+10f world\n", 1.0/0.0);
 	printf("\n");
 
 	printf("NaN: hello %10f world\n", 0.0/0.0);
 	ft_printf("NaN: hello %10f world\n", 0.0/0.0);
+	printf("\n");
+
+	printf("NaN: hello %+10f world\n", 0.0/0.0);
+	ft_printf("NaN: hello %+10f world\n", 0.0/0.0);
 	printf("\n");
 
 	return (0);
