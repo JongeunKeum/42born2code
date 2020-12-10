@@ -15,40 +15,27 @@ SRCS = ./srcs/ft_printf.c  ./srcs/ft_printf_utils.c \
 	   ./srcs/ft_process_deci.c ./srcs/ft_process_inte.c \
 	   ./srcs/ft_precision_f.c ./srcs/ft_flagwidth_f.c
 
-BONUS_SRCS = ./bonus_srcs/ft_printf_bonus.c ./bonus_srcs/ft_printf_utils_bonus.c \
-			 ./bonus_srcs/ft_chk_format_bonus.c ./bonus_srcs/ft_lltoa_bonus.c \
-			 ./bonus_srcs/ft_print_d_bonus.c ./bonus_srcs/ft_print_u_bonus.c \
-			 ./bonus_srcs/ft_print_c_bonus.c ./bonus_srcs/ft_print_s_bonus.c \
-			 ./bonus_srcs/ft_print_hex_bonus.c ./bonus_srcs/ft_print_o_bonus.c \
-			 ./bonus_srcs/ft_print_p_bonus.c ./bonus_srcs/ft_print_n_bonus.c \
-			 ./bonus_srcs/ft_convert_base_bonus.c ./bonus_srcs/ft_ptoa_bonus.c \
-			 ./bonus_srcs/ft_fill_width_bonus.c ./bonus_srcs/ft_ulltoa_bonus.c \
-			 ./bonus_srcs/ft_strjoin_free_bonus.c ./bonus_srcs/ft_print_f_bonus.c \
-			 ./bonus_srcs/ft_process_deci_bonus.c ./bonus_srcs/ft_process_inte_bonus.c \
-			 ./bonus_srcs/ft_precision_f_bonus.c ./bonus_srcs/ft_flagwidth_f_bonus.c
-
 OBJS = $(SRCS:.c=.o)
-BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 LIB = libft.a
 LIB_DIR = ./libft
+INC = ./includes
 RM = rm -f
 
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -I$(INC) -o $@ $<
 
 $(NAME) : $(OBJS)
 	$(MAKE) -C $(LIB_DIR)
 	cp $(LIB_DIR)/$(LIB) ./$(NAME)
 	$(AR) $(ARFLAGS) $@ $(OBJS)
 
-bonus : $(NAME) $(BONUS_OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJS)
+bonus : all
 
 clean :
 	$(MAKE) -C $(LIB_DIR) fclean
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS)
 
 fclean : clean
 	$(RM) $(NAME)
