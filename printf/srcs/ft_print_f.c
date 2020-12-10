@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:30 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 23:51:13 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/11 04:48:53 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,20 @@ int				print_double(va_list args, t_obj *obj)
 	if (!(fp = init_fobjs()))
 		return (0);
 	fp->realnum = va_arg(args, double);
-	obj->neg = fp->bitfield.sign;
-	fill_deci(obj, fp);
-	fill_inte(obj, fp);
-	cut_precision_f(obj);
-	flag_n_width_f(obj);
+	if (fp->bitfield.exponent == 2047 && fp->bitfield.mantissa == 0)
+	{
+		if (!(is_infinite_f(obj)))
+			return (0);
+	}
+	else if (fp->bitfield.exponent == 2047 && fp->bitfield.mantissa)
+		is_not_a_number_f(obj);
+	else
+	{
+		obj->neg = fp->bitfield.sign;
+		fill_deci(obj, fp);
+		fill_inte(obj, fp);
+		cut_precision_f(obj);
+		flag_n_width_f(obj);
+	}
 	return (1);
 }
