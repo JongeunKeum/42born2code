@@ -3,7 +3,7 @@
 
 int	main(void)
 {
-	printf("return: %d\n", printf("01. hello %f world\n", 2.625));
+/*	printf("return: %d\n", printf("01. hello %f world\n", 2.625));
 	printf("return: %d\n", ft_printf("01. hello %f world\n", 2.625));
 	printf("\n");
 
@@ -92,19 +92,19 @@ int	main(void)
 	printf("22. hello %+.1f world\n", 12.345);
 	ft_printf("22. hello %+.1f world\n", 12.345);
 	printf("\n");
-
+*/
 //	printf("23. hello %+ .1f world\n", 12.345); +12.345 (공백 무시)
-	ft_printf("23. hello %+ .1f world\n", 12.345);
-	printf("\n");
-
+//	ft_printf("23. hello %+ .1f world\n", 12.345);
+//	printf("\n");
+/*
 	printf("return: %d\n", printf("24. hello %010.1f world\n", 12.345));
 	printf("return: %d\n", ft_printf("24. hello %010.1f world\n", 12.345));
 	printf("\n");
-
+*/
 //	printf("25. hello %-010.1f world\n", 12.345); 12.3      (0플래그 무시)
-	ft_printf("25. hello %-010.1f world\n", 12.345);
-	printf("\n");
-
+//	ft_printf("25. hello %-010.1f world\n", 12.345);
+//	printf("\n");
+/*
 	printf("26. hello % 010.1f world\n", 12.345);
 	ft_printf("26. hello % 010.1f world\n", 12.345);
 	printf("\n");
@@ -135,6 +135,14 @@ int	main(void)
 
 	printf("return: %d\n", printf("% 010.1f\n", -12.345));
 	printf("return: %d\n", ft_printf("% 010.1f\n", -12.345));
+	printf("\n");
+*/
+	printf("INF: hello %010f world\n", 1.0/0.0);
+	ft_printf("INF: hello %010f world\n", 1.0/0.0);
+	printf("\n");
+
+	printf("NaN: hello %10f world\n", 0.0/0.0);
+	ft_printf("NaN: hello %10f world\n", 0.0/0.0);
 	printf("\n");
 
 	return (0);
