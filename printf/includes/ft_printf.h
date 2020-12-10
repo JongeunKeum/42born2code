@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 15:38:45 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 23:44:48 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/11 04:48:35 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,7 @@ void				ft_strrev_f(t_obj *obj);
 void				cut_precision_f(t_obj *obj);
 void				flag_n_width_f(t_obj *obj);
 void				print_out_result(t_obj *obj);
+int					is_infinite_f(t_obj *obj);
+int					is_not_a_number_f(t_obj *obj);
 
 #endif
