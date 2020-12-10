@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 16:46:44 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/11 04:51:11 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/11 04:59:58 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int		is_not_a_number_f(t_obj *obj)
 	obj->res = ft_strdup("nan");
 	obj->len = ft_strlen(obj->res);
 	obj->zero = 0;
-	obj->neg = 1;
 	obj->sign = 0;
 	if (obj->width > (int)ft_strlen(obj->res))
 	{
