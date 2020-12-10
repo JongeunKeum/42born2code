@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:59:25 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/02 18:46:50 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/10 21:24:07 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int			check_format(const char *str, va_list args, t_obj *obj)
 		if (str[obj->idx] == '.')
 			check_precision(str, obj, args);
 		check_length(str, obj);
+		if (!ft_strchr("cdisupxXonf%", str[obj->idx + 1]))
+			break ;
 	}
 	obj->type = str[obj->idx];
 	if (obj->type == 'o' && obj->prefix)
