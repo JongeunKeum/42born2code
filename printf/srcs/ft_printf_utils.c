@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 16:46:44 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 17:01:13 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/11 04:51:11 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,38 @@ void	check_length(const char *str, t_obj *obj)
 		obj->length = 2;
 	else if (h_cnt == 1)
 		obj->length = 1;
+}
+
+int		is_infinite_f(t_obj *obj)
+{
+	obj->res = ft_strdup("inf");
+	obj->len = ft_strlen(obj->res);
+	obj->zero = 0;
+	if (obj->width > (int)ft_strlen(obj->res))
+	{
+		if (!(fill_width(obj)))
+			return (0);
+	}
+	ft_putstr_fd(obj->res, 1);
+	obj->return_value += ft_strlen(obj->res);
+	free(obj->res);
+	return (1);
+}
+
+int		is_not_a_number_f(t_obj *obj)
+{
+	obj->res = ft_strdup("nan");
+	obj->len = ft_strlen(obj->res);
+	obj->zero = 0;
+	obj->neg = 1;
+	obj->sign = 0;
+	if (obj->width > (int)ft_strlen(obj->res))
+	{
+		if (!(fill_width(obj)))
+			return (0);
+	}
+	ft_putstr_fd(obj->res, 1);
+	obj->return_value += ft_strlen(obj->res);
+	free(obj->res);
+	return (1);
 }
