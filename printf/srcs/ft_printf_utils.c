@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 16:46:44 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/11 04:51:11 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/12 17:50:34 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	check_length(const char *str, t_obj *obj)
 
 int		is_infinite_f(t_obj *obj)
 {
-	obj->res = ft_strdup("inf");
+	if (!(obj->res = ft_strdup("inf")))
+		return (0);
 	obj->len = ft_strlen(obj->res);
 	obj->zero = 0;
 	if (obj->width > (int)ft_strlen(obj->res))
@@ -76,7 +77,8 @@ int		is_infinite_f(t_obj *obj)
 
 int		is_not_a_number_f(t_obj *obj)
 {
-	obj->res = ft_strdup("nan");
+	if (!(obj->res = ft_strdup("nan")))
+		return (0);
 	obj->len = ft_strlen(obj->res);
 	obj->zero = 0;
 	obj->neg = 1;
