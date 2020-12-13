@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:30 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/11 04:48:53 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/12 17:46:01 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,10 @@ int				print_double(va_list args, t_obj *obj)
 			return (0);
 	}
 	else if (fp->bitfield.exponent == 2047 && fp->bitfield.mantissa)
-		is_not_a_number_f(obj);
+	{
+		if (!(is_not_a_number_f(obj)))
+			return (0);
+	}
 	else
 	{
 		obj->neg = fp->bitfield.sign;
