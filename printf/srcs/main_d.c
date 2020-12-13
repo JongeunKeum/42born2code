@@ -5,7 +5,7 @@ int		ft_printf(const char *str, ...);
 
 int		main(void)
 {
-	printf("return:%d\n", printf("01. hello %d world %10d\n\n", 12345, -9876));
+/*	printf("return:%d\n", printf("01. hello %d world %10d\n\n", 12345, -9876));
 	printf("return:%d\n", ft_printf("01. hello %d world %10d\n\n", 12345, -9876));
 
 	printf("02. hello %d world\n", -12345);
@@ -166,7 +166,7 @@ int		main(void)
 
 	printf("54. hello % -7d world\n", -123);
 	ft_printf("54. hello % -7d world\n\n", -123);
-
+*/
 //	printf("55. hello % +7d world\n", 123);
 //	ft_printf("55. hello % +7d world\n\n", 123);
 
@@ -184,7 +184,7 @@ int		main(void)
 
 //	printf("58. hello % +-10.5d world\n", -123);
 	ft_printf("58. hello % +-10.5d world\n\n", -123);
-
+/*
 	printf("59. hello %+-10.5d world\n", -216);
 	ft_printf("59. hello %+-10.5d world\n\n", -216);
 
@@ -196,10 +196,10 @@ int		main(void)
 
 	printf("62. hello %.0d world\n", 73);
 	ft_printf("62. hello %.0d world\n\n", 73);
-
+*/
 	printf("63. hello %.2d world\n", 0);
 	ft_printf("63. hello %.2d world\n\n", 0);
-
+/*
 	printf("64. hello %*d world\n", -4, -12);
 	ft_printf("64. hello %*d world\n\n", -4, -12);
 
@@ -211,6 +211,6 @@ int		main(void)
 
 	printf("67. hello %0*.*d world\n", 2, -2, 0);
 	ft_printf("67. hello %0*.*d world\n\n", 2, -2, 0);
-
+*/
 	return (0);
 }
