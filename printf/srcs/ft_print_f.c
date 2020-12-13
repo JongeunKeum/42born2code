@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:30 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/12 17:46:01 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/13 21:09:31 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,6 @@ int				print_double(va_list args, t_obj *obj)
 		cut_precision_f(obj);
 		flag_n_width_f(obj);
 	}
+	free(fp);
 	return (1);
 }
