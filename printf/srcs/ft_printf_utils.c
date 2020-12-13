@@ -6,7 +6,11 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 16:46:44 by jkeum             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/12/12 17:50:34 by jkeum            ###   ########.fr       */
+=======
+/*   Updated: 2020/12/11 04:59:58 by jkeum            ###   ########.fr       */
+>>>>>>> fd78db4a2beb9c83415bc79958ce4f0e58c3dd84
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +85,6 @@ int		is_not_a_number_f(t_obj *obj)
 		return (0);
 	obj->len = ft_strlen(obj->res);
 	obj->zero = 0;
-	obj->neg = 1;
 	obj->sign = 0;
 	if (obj->width > (int)ft_strlen(obj->res))
 	{
