@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:25:31 by jkeum             #+#    #+#             */
-/*   Updated: 2020/12/09 01:50:19 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/12 20:32:29 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static int		is_percent(const char *str, va_list args, t_obj *obj)
 		set_objs(obj);
 		if (!(check_format(str, args, obj)))
 		{
-			free(obj->res);
 			free(obj);
 			return (0);
 		}
