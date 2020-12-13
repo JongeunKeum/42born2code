@@ -137,31 +137,25 @@ int	main(void)
 	printf("return: %d\n", ft_printf("% 010.1f\n", -12.345));
 	printf("\n");
 */
-<<<<<<< HEAD
 /*	printf("INF: hello %010f world\n", 1.0/0.0);
 	ft_printf("INF: hello %010f world\n", 1.0/0.0);
-=======
 	printf("INF: hello %+10f world\n", 1.0/0.0);
 	ft_printf("INF: hello %+10f world\n", 1.0/0.0);
->>>>>>> fd78db4a2beb9c83415bc79958ce4f0e58c3dd84
 	printf("\n");
 
 	printf("NaN: hello %10f world\n", 0.0/0.0);
 	ft_printf("NaN: hello %10f world\n", 0.0/0.0);
 	printf("\n");
-<<<<<<< HEAD
 */
 /*	printf("%.10f", 123.456);
 	printf("\n");
 	ft_printf("%.1000f", 231424.456194823948244928);
 	printf("\n");
 */
-=======
 
 	printf("NaN: hello %+10f world\n", 0.0/0.0);
 	ft_printf("NaN: hello %+10f world\n", 0.0/0.0);
 	printf("\n");
 
->>>>>>> fd78db4a2beb9c83415bc79958ce4f0e58c3dd84
 	return (0);
 }
