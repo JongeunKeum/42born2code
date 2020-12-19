@@ -212,5 +212,8 @@ int		main(void)
 	printf("67. hello %0*.*d world\n", 2, -2, 0);
 	ft_printf("67. hello %0*.*d world\n\n", 2, -2, 0);
 */
+	printf("68. %#10d\n", 123);
+	ft_printf("68. %#10d\n\n", 123);
+	
 	return (0);
 }
