@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:35:04 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 17:01:20 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/19 19:14:50 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int					print_int(va_list args, t_obj *obj)
 	long long	n;
 	char		*nbr;
 
+	obj->prefix = 0;
 	obj->res = (char *)ft_calloc(1, 1);
 	n = get_num_d(args, obj);
 	if (!(nbr = ft_lltoa(n)))
