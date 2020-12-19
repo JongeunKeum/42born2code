@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 14:58:56 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 17:04:46 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/19 18:20:40 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int				print_str(va_list args, t_obj *obj)
 		return (0);
 	if (!s)
 		s = null;
+	obj->prefix = 0;
 	obj->len = ft_strlen(s);
 	if (!(process_precision_s(s, obj)))
 	{
