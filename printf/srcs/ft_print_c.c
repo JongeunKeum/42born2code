@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 17:10:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 16:58:08 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/19 18:57:32 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	is_not_null_c(t_obj *obj, char c)
 {
 	char	*ch;
 
+	obj->prefix = 0;
 	if (!(ch = (char *)ft_calloc(2, 1)))
 		return (0);
 	ch[0] = c;
