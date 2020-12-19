@@ -143,6 +143,12 @@ int	main(void)
 	printf("return: %d\n", ft_printf("% 010.1f\n", -12.345));
 	printf("\n");
 */
+	// printf("%#.0f\n", 0.0);
+	// ft_printf("%#.0f\n\n", 0.0);
+
+	// printf("%#.0f\n", 12.34);
+	// ft_printf("%#.0f\n\n", 12.34);
+
 /*	printf("INF: hello %010f world\n", 1.0/0.0);
 	ft_printf("INF: hello %010f world\n", 1.0/0.0);
 	printf("INF: hello %+10f world\n", 1.0/0.0);
