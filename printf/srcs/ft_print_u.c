@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:13:22 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 17:05:16 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/19 19:14:01 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int							print_unsigned_int(va_list args, t_obj *obj)
 	unsigned long long	n;
 	char				*nbr;
 
+	obj->prefix = 0;
 	obj->res = (char *)ft_calloc(1, 1);
 	n = get_num_u(args, obj);
 	if (!(nbr = ft_ulltoa(n)))
