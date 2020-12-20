@@ -6,7 +6,7 @@
 /*   By: jkeum <jkeum@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 20:09:09 by jkeum             #+#    #+#             */
-/*   Updated: 2020/11/29 17:02:36 by jkeum            ###   ########.fr       */
+/*   Updated: 2020/12/20 17:18:03 by jkeum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static unsigned long long	get_num_x(va_list args, t_obj *obj)
 	else if (obj->length == 4)
 		n = va_arg(args, unsigned long long);
 	else if (obj->length == 1)
-		n = (unsigned short)va_arg(args, int);
+		n = (unsigned short)va_arg(args, unsigned int);
 	else if (obj->length == 2)
-		n = (unsigned char)va_arg(args, int);
+		n = (unsigned char)va_arg(args, unsigned int);
 	else
 		n = va_arg(args, unsigned int);
 	return (n);
