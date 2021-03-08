@@ -22,6 +22,9 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+double				ft_atod(char *str);
+int					ft_issign(char c);
+char				*ft_strrev(char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
